@@ -1,0 +1,1019 @@
+// ****************************************************************************************************
+// 
+// 0. Documentation / Introduction
+// 
+// ****************************************************************************************************
+//
+//
+// **************************************************
+// Table of Contents
+// **************************************************
+// 
+// 1. SCSS Variables
+//    - Color Theme
+//    - Layout Sizing
+//    - Media Size Breakpoints
+//    - Susy Grid Settings
+//    - Font Stacks
+// 
+// 2. SCSS Includes
+// 
+// 3. General Cascade
+//    - Fundamental Page Structure
+//    - HTML Primitives
+//    - Togglable Screened Background Fixture
+// 
+// 4. Utility Classes
+//    - Header Formatting
+//    - Paragraph Formatting
+//    - Bulleted List Formatting
+//    - 1*3 Module Formatting
+//    - Page Section Formatting
+// 
+// 5. Z-Indices
+//
+//
+// **************************************************
+// SCSS Guidelines
+// **************************************************
+//
+// - Write SCSS with the following structure:
+//
+//   element#id.class {                         <= Styles should be written in that order, but may not contain every specifier in the selector.
+//     display: <value>;                        <= This is optional.
+//     visibility: <value>;                     <= This is optional.
+//     float: <value>;                          <= This is optional.
+//     box-sizing-properties: <value>;          <= This is optional. Examples include: width, height, min-width, min-height, padding, margin, border. etc.
+//     superficial-properties: <value>;         <= This is optional. Examples include: font-size, line-height, font-weight, etc.
+//     positioning-properties: <value>;         <= This is optional. Examples include: position, top, right, bottom, left.
+//     @include mixin-name(<value>);            <= This is optional.
+//     @include screen-format(monitor) { ... }  <= This is optional.
+//     @include screen-format(laptop) { ... }   <= This is optional.
+//     @include screen-format(tablet) { ... }   <= This is optional.
+//     @include screen-format(phone) { ... }    <= This is optional.
+//     @include screen-format(nano) { ... }     <= This is optional.
+//     nested element#id.class { ... }          <= This is optional.
+// }
+//
+// - Include responsive features for any SCSS block you write.
+// - Use hyphens to separate words for classes and IDs. E.g. #this-is-an-id-selector.
+// - Try and avoid excessive specificity (not absolute rule; just a guideline).
+// - A rule-of-thumb would be to omit the HTML selector if it is a <div> or <span> because they are generic.
+// - You might include an HTML selector if it is more semantic, such as <nav> or <footer>.
+// - When possible, document your code LIBERALLY.
+// - When naming classes or variables, use words that increase in specificity, as in: "general"-"more-specific"-"most-specific". E.g. "color-button-text".
+//
+//
+// **************************************************
+// Main Page Hierarchy/Structure
+// **************************************************
+//
+// html {
+//   body {
+//     #ns-screen-background                    { ... }   This section is available on every view. It is activated when Angular code requests a background screen (e.g. modals and warning popups).
+//     #ns-warning                              { ... }   This section is available on every view. It is activated when Angular code requests a warning popup.
+//     nav.ns-section-main                      { ... }   This section is available on every view. It is the main app navigation.
+//     #ns-slide-controls                       { ... }   This section is available on every view. It is the "hamburger slider" controls that display in responsive screen formats.
+//     <!-- BEGIN: "yielded view" content. -->
+//     #ns-modal                                { ... }   This section is optionally included inside of a rails view when a page has a modal.
+//     section.ns-section-main {                          This markup is mandatory to wrap all page content. It controls various page states in responsive or dynamic views. It can be used multiple times per page.
+//       .ns-section-wrapper                    { ... }   This markup is mandatory to wrap all page content. It centers and provides a determined width to page content while still allowing edge-to-edge backgrounds in its wrapping section.
+//     }
+//     <!-- END:   "yielded view" content. -->
+//     footer.ns-section-main                   { ... }   This section is available on every view. It is the main app footer.
+//   }
+// }
+// 
+//
+// ****************************************************************************************************
+
+
+
+// ****************************************************************************************************
+// 
+// 1. SCSS Variables
+// 
+// ****************************************************************************************************
+
+
+// **************************************************
+// Color Theme
+// **************************************************
+
+$color-primary: #6bc6b5;
+$color-secondary: #20484a;
+$color-tertiary: #cd252f;
+
+$color-accent: #20484a;
+
+$color-text-anchor: #20484a;
+$color-text-header: #404040;
+$color-text-body: #5a5a5a;
+
+$color-text-anchor-on-dark: #20484a;
+$color-text-header-on-dark: #404040;
+$color-text-body-on-dark: #404040;
+
+$color-line: #e6e6e6;
+
+$color-page-background: #ffffff;
+
+$color-top-bar-background: #fbfbfb;
+$color-top-bar-text: #5a5a5a;
+
+$color-footer-background: #5a5a5a;
+$color-footer-text: #ffffff;
+
+
+// **************************************************
+// Layout Sizing
+// **************************************************
+
+$height-top-bar: 60px;
+$height-top-bar-collapsed: 40px;
+
+$height-footer: 60px;
+
+$font-primary-text-size: 16px;
+$font-primary-text-line-height: 20px;
+
+
+// **************************************************
+// Media Size Breakpoints
+// **************************************************
+
+$monitor-breakpoint: 1200px;
+$laptop-breakpoint: 980px;
+$tablet-breakpoint: 768px;
+$phone-breakpoint: 480px;
+
+@mixin screen-format($media-type) {
+  @if $media-type == monitor {
+    @media (min-width: $monitor-breakpoint) { @content; }
+  }
+  @else if $media-type == laptop {
+    @media (min-width: $laptop-breakpoint) and (max-width: $monitor-breakpoint - 1) { @content; }
+  }
+  @else if $media-type == tablet {
+    @media (min-width: $tablet-breakpoint) and (max-width: $laptop-breakpoint - 1) { @content; }
+  }
+  @else if $media-type == phone {
+    @media (min-width: $phone-breakpoint) and (max-width: $tablet-breakpoint - 1) { @content; }
+  }
+  @else if $media-type == nano {
+    @media (max-width: $phone-breakpoint - 1) { @content; }
+  }
+}
+
+
+// **************************************************
+// Susy Grid Settings
+// **************************************************
+
+$total-columns: 12;
+$column-width: 56px;
+$gutter-width: 48px;
+$grid-padding: 0;
+
+
+// **************************************************
+// Font Stacks
+// **************************************************
+
+$font-secondary: 'Lato', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-primary: 'Lato', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+$font-icons: "SSStandard";
+$font-icons-social: "SSSocialRegular";
+
+
+
+// ****************************************************************************************************
+// 
+// 2. SCSS Includes
+// 
+// ****************************************************************************************************
+
+
+@import "compass/reset";
+@import "compass/css3";
+@import "compass/utilities/general/clearfix";
+@import "compass/utilities/general/hacks";
+
+@import "susy";
+
+@import "shared/_navigation";
+@import "shared/_footer";
+@import "shared/_button";
+@import "shared/_form";
+@import "shared/_table";
+@import "shared/_warningPopup";
+@import "shared/_modal";
+@import "shared/_throbber";
+@import "shared/_notifications";
+
+
+
+// ****************************************************************************************************
+// 
+// 3. General Cascade
+// 
+// ****************************************************************************************************
+
+
+// **************************************************
+// Fundamental Page Structure
+// **************************************************
+
+html {
+  min-height: 100%;
+}
+
+body {
+  display: block;
+  float: left;
+  width: 100%;
+  min-height: 100%;
+  padding: $height-top-bar 0 $height-footer 0;
+  font-family: $font-primary;
+  font-size: $font-primary-text-size;
+  line-height: $font-primary-text-line-height;
+  font-weight: 400;
+  color: $color-text-body;
+  -webkit-font-smoothing: antialiased;  // This style targets webkit. It is required so that fonts appear to render with the correct font weight.
+  background: $color-page-background;
+  @include box-sizing(border-box);
+}
+
+
+// **************************************************
+// HTML Primitives
+// **************************************************
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: $color-text-anchor;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {}
+
+strong {
+  font-weight: 700;
+}
+
+em {
+  font-style: italic;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  padding: 0;
+  margin: 15px 0 24px 0;
+  border: none;
+  color: $color-line;
+  background: $color-line;
+}
+
+
+// **************************************************
+// Togglable Screened Background Fixture
+// **************************************************
+
+#ns-screen-background {
+  display: none;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, .85);
+}
+#ns-screen-background.ns-screen-background-visible {
+  display: block;
+  visibility: visible;
+}
+
+#ns-screen-background.ng-enter,
+#ns-screen-background.ng-leave {
+  @include transition-delay(0);
+  @include transition-timing-function(cubic-bezier(0.250, 0.460, 0.450, 0.940));
+  @include transition-property(all);
+  @include transition-duration(0.5s);
+}
+
+#ns-screen-background.ng-enter,
+#ns-screen-background.ng-leave.ng-leave-active {
+  @include opacity(0);
+}
+
+#ns-screen-background.ng-leave,
+#ns-screen-background.ng-enter.ng-enter-active {
+  @include opacity(1);
+}
+
+
+// ****************************************************************************************************
+// 
+// 4. Utility Classes
+// 
+// ****************************************************************************************************
+
+
+// **************************************************
+// Header Formatting
+// **************************************************
+
+h1.ns-header-basic {
+  margin: 0 0 20px 0;
+  font-size: 48px;
+  line-height: 60px;
+  font-weight: 900;
+}
+
+h2.ns-header-basic {
+  margin: 0 0 20px 0;
+  font-size: 48px;
+  line-height: 60px;
+  font-weight: 700;
+}
+
+h3.ns-header-basic {
+  margin: 0 0 10px 0;
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 700;
+}
+
+h3.ns-header-lined {
+  padding: 40px 0 0 0;
+  margin: 0 0 30px 0;
+  font-size: 16px;
+  line-height: 25px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 1px solid $color-line;
+  @include span-columns(12 omega, 12);
+}
+
+
+// **************************************************
+// Paragraph Formatting
+// **************************************************
+
+p.ns-paragraph-basic {
+  margin: 0 0 10px 0;
+}
+
+
+// **************************************************
+// Bulleted List Formatting
+// **************************************************
+
+ol.ns-bulleted-list,
+ul.ns-bulleted-list {
+  > li {}
+}
+
+
+// **************************************************
+// 1*3 Module Formatting
+// **************************************************
+
+ol.ns-module-triple {
+  @include span-columns(12 omega, 12);
+  > li {
+    margin: 0 0 20px 0;
+    @include span-columns(4, 12);
+    @include screen-format(phone) {
+      @include span-columns(12 omega, 12);
+    }
+    @include screen-format(nano) {
+      @include span-columns(12 omega, 12);
+    }
+  }
+  > li:nth-child(3n) {
+    @include span-columns(4 omega, 12);
+    @include screen-format(phone) {
+      @include span-columns(12 omega, 12);
+    }
+    @include screen-format(nano) {
+      @include span-columns(12 omega, 12);
+    }
+  }
+}
+
+
+// **************************************************
+// Page Section Formatting
+// **************************************************
+
+.ns-section-main {                        // This class denotes a main page section.
+  display: inline-block;
+  float: left;
+  width: 100%;
+  background: $color-page-background;
+  position: relative;
+  left: 0;
+  @include transition-property(left);
+  @include transition-duration(0.25s);
+  @include transition-timing-function(ease-in); 
+  @include transition-delay(0);
+  > .ns-section-wrapper {                 // This class wraps content inside of a main page section, to give it width.
+    display: block;
+    padding: 0 20px;
+    margin: 0 auto;
+    overflow: hidden;
+    @include legacy-pie-clearfix;
+    @include screen-format(monitor) {
+      width: $monitor-breakpoint - 40px;  // The subtraction of 40px accounts for the container padding.
+    }
+  }
+}
+
+
+
+// ****************************************************************************************************
+// 
+// 5. Z-Indices
+// 
+// ****************************************************************************************************
+
+
+// All z-indices should be contained in this section.
+// One exception to this rule is the z-indices of plugins.
+// As discrete/independent plugins, they should be divorced from everything else.
+// We consolidate z-indices so we can best determine stacking orders.
+
+// **************************************************
+// Directory of Z-Indices
+// **************************************************
+//
+// 900-999: RESERVED
+// 800-899: Warnings & Notifications.
+// 700-799: Modals.
+// 600-699: Page Screen.
+// 500-599: Navigation in Fullscreen Mode.
+// 400-499: Hamburger Slider Controls.
+// 300-399: Footer.
+// 200-299: Main Page Content.
+// 100-199: Navigation in Responsive Mode.
+// 000-099: RESERVED
+//
+// **************************************************
+
+#ns-screen-background {   z-index: 600; }
+nav.ns-section-main {     z-index: 500; }
+#ns-slide-controls {
+                          z-index: 400; }
+footer.ns-section-main {  z-index: 300; }
+.ns-section-main {        z-index: 200; }
+nav.ns-section-main {
+  @include screen-format(phone) {
+                          z-index: 100; }
+  @include screen-format(nano) {
+                          z-index: 100; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nav.ns-section-main {
+  border-bottom: 1px solid #f2f2f2;
+  ol#ns-navigation {
+    > li {
+      > a {
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 1px;
+      }
+    }
+  }
+}
+
+#ns-slide-controls.ns-section-main {
+  border-bottom: 1px solid #f2f2f2;
+}
+
+input[type="submit"].ns-button.ns-button-line.ns-button-line-red,
+input[type="button"].ns-button.ns-button-line.ns-button-line-red,
+input[type="reset"].ns-button.ns-button-line.ns-button-line-red,
+button.ns-button.ns-button-line.ns-button-line-red {
+  border-color: $color-button-background-warning;
+  color: $color-button-background-warning;
+}
+  
+
+
+#edit-champion-header {
+  display: block;
+  float: left;
+  width: 100%;
+  padding: 50px 0 0 0;
+  h1.ns-header-basic {
+    float: left;
+    margin-bottom: 10px;
+  }
+  .ns-button.ns-button-line,
+  input[type="submit"].ns-button.ns-button-line,
+  input[type="button"].ns-button.ns-button-line,
+  input[type="reset"].ns-button.ns-button-line,
+  button.ns-button.ns-button-line {
+    float: right;
+    margin: 15px 0 0 5px;
+  }
+}
+
+textarea#edit-champion-profile-biography {
+  height: 400px;
+}
+
+textarea#edit-champion-profile-lore {
+  height: 200px;
+}
+
+textarea#edit-champion-profile-strategy {
+  height: 200px;
+}
+
+#edit-champion-section-quotes.edit-champion-section {
+  .ns-form-row-right {
+    input[type="text"] {
+      display: block;
+      float: left;
+      width: 700px;
+      margin: 0 5px 0 0;
+    }
+    .ns-button.ns-button-line,
+    input[type="submit"].ns-button.ns-button-line,
+    input[type="button"].ns-button.ns-button-line,
+    input[type="reset"].ns-button.ns-button-line,
+    button.ns-button.ns-button-line {
+      display: block;
+      float: left;
+      margin: 5px 0 0 5px;
+    }
+  }
+  .ns-form-row-right:nth-child(n+3) {
+    margin: 5px 0 0 0;
+  }
+
+}
+
+#edit-champion-section-intro.edit-champion-section::after {
+  display: block;
+  width: 9000px;
+  height: 9000px;
+  content: "█";
+  background-color: #ffffff;
+  color: #ffffff;
+  position: absolute;
+  left: -30px;
+  top: -30px;
+  font-size: 9999;
+  z-index: 1;
+  @include opacity(.94);
+}
+
+#edit-champion-section-intro.edit-champion-section {
+  overflow: hidden;
+
+  }
+  #edit-champion-section-left {
+    position: relative;
+    z-index: 100;
+    .ns-button.ns-button-line,
+    input[type="submit"].ns-button.ns-button-line,
+    input[type="button"].ns-button.ns-button-line,
+    input[type="reset"].ns-button.ns-button-line,
+    button.ns-button.ns-button-line {
+      width: 100%;
+      margin: 10px 0 0 0;
+    }
+  }
+  #edit-champion-section-right {
+    position: relative;
+    z-index: 100;
+    .ns-button.ns-button-line,
+    input[type="submit"].ns-button.ns-button-line,
+    input[type="button"].ns-button.ns-button-line,
+    input[type="reset"].ns-button.ns-button-line,
+    button.ns-button.ns-button-line {
+      position: relative;
+      top: 1px;
+      left: 7px;
+    }
+  }
+
+
+#edit-champion-section-stats.edit-champion-section {
+  .ns-button.ns-button-line,
+  input[type="submit"].ns-button.ns-button-line,
+  input[type="button"].ns-button.ns-button-line,
+  input[type="reset"].ns-button.ns-button-line,
+  button.ns-button.ns-button-line {
+    margin: 5px 0 0 0;
+  }
+}
+
+
+
+
+.edit-champion-section.edit-champion-section-ability {
+  .edit-champion-number-series {
+    margin-right: 5px;
+  }
+  .ns-button.ns-button-line.ns-button-small,
+  input[type="submit"].ns-button.ns-button-line.ns-button-small,
+  input[type="button"].ns-button.ns-button-line.ns-button-small,
+  input[type="reset"].ns-button.ns-button-line.ns-button-small,
+  button.ns-button.ns-button-line.ns-button-small {
+    display: block;
+    float: left;
+    margin: 12px 1px 0 0;
+  }
+  .ns-button.ns-button-line,
+  input[type="submit"].ns-button.ns-button-line,
+  input[type="button"].ns-button.ns-button-line,
+  input[type="reset"].ns-button.ns-button-line,
+  button.ns-button.ns-button-line {
+    margin: 21px 5px 0 0;
+  }
+  img.skill-icon-image {
+    display: inline-block;
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin: 0 5px 0 0;
+  }
+  .skill-icon-upload {
+    display: block;
+    float: left;
+    width: 300px !important;
+  }
+  .skill-icon-save {
+    display: block;
+    float: left;
+    margin: 5px 0 0 10px !important;
+  }
+}
+
+
+
+
+.edit-champion-section {
+  display: block;
+  float: left;
+  width: 100%;
+  border: 1px solid #f2f2f2;
+  padding: 29px;
+  margin: 20px 0 20px 0;
+  background: #fbfbfb;
+  background-position: center center;
+  @include box-sizing(border-box);
+  @include border-radius(5px);
+  @include background-size(cover);
+  position: relative;
+}
+
+#edit-champion-section-left {
+  @include span-columns(3, 12);
+  @include screen-format(phone) {
+    @include span-columns(12 omega, 12);
+  }
+  @include screen-format(nano) {
+    @include span-columns(12 omega, 12);
+  }
+  #edit-champion-intro-portrait-display {
+    display: block;
+    float: left;
+    width: 100%;
+    height: 242px;
+    border-top: 1px solid $color-form-input-outline;
+    border-right: 1px solid $color-form-input-outline;
+    border-bottom: none;
+    border-left: 1px solid $color-form-input-outline;
+    padding: 5px;
+    background: #ffffff;
+    @include border-radius(5px 5px 0 0);
+    @include box-sizing(border-box);
+    > img {
+      width: 100%;
+    }
+  }
+  input[type="file"] {
+    @include border-radius(0 0 5px 5px);
+  }
+}
+
+#edit-champion-section-right {
+  @include span-columns(9 omega, 12);
+  @include screen-format(phone) {
+    @include span-columns(12 omega, 12);
+  }
+  @include screen-format(nano) {
+    @include span-columns(12 omega, 12);
+  }
+}
+
+.edit-champion-section-header {
+  display: block;
+  float: left;
+  padding: 3px 7px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  background: #ffffff;
+  @include border-radius(30px);
+  position: absolute;
+  top: -15px;
+  left: 13px;
+}
+
+.edit-champion-section-radio {
+  display: block;
+  float: left;
+  width: 902px;
+  padding: 0 15px;
+  margin: 10px 0 0 0;
+  background: #f3f3f3;
+  @include border-radius(5px);
+  @include box-sizing(border-box);
+  > input[type="radio"] {
+    margin: 0 5px 0 0;
+  }
+  > label {
+    margin: 0 30px 0 0;
+  }
+}
+
+
+
+.edit-champion-number-series {
+  display: block;
+  float: left;
+  width: 450px;
+  border: 1px solid $color-form-input-outline;
+  overflow: hidden;
+  @include border-radius(5px);
+  .edit-champion-number-series-field.edit-champion-number-series-field-large {
+    width: 100px;
+  }
+  .edit-champion-number-series-field {
+    display: block;
+    float: left;
+    width: 50px;
+    @include box-shadow(-1px 1px 0 $color-form-input-outline, 1px -1px 0 $color-form-input-outline, 1px 1px 0 $color-form-input-outline, -1px -1px 0 $color-form-input-outline);
+    @include border-radius(0);
+    // position: relative;
+    // left: -1px;
+    // top: -1px;
+    label {
+      display: block;
+      float: left;
+      width: 100%;
+      padding: 4px 0 3px 0;
+      border-bottom: 1px solid #f2f2f2;
+      background: #fbfbfb;
+      text-align: center;
+      font-size: 12px;
+      line-height: 12px;
+    }
+    select {
+      display: block;
+      float: left;
+      height: 28px;
+      padding: 4px 7px;
+      border: none;
+      width: 100%;
+      font-size: 12px;
+      @include border-radius(0);
+      -webkit-appearance: none;
+    }
+    input[type="number"] {
+      display: block;
+      float: left;
+      padding: 4px 0;
+      border: none;
+      width: 100%;
+      font-size: 12px;
+      text-align: center;
+      @include box-sizing(border-box);
+      @include border-radius(0);
+      -moz-appearance:textfield;
+    }
+    input[type="text"].text-specification-input {
+      padding: 5px;
+      font-size: 14px;
+      line-height: 20px;
+      position: absolute;
+      top: 44px;
+      margin-left: -94px;
+      @include box-shadow(2px 2px 5px rgba(0, 0, 0, .4));
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+  }
+}
+
+.edit-champion-number-series.edit-champion-number-series-large {
+  width: 500px;
+
+}
+
+.edit-champion-number-series.edit-champion-number-series-flexible {
+  width: auto;
+}
+
+.edit-champion-number-series.edit-champion-number-series-small {
+  width: 150px;
+}
+
+
+
+
+textarea {
+  padding-top: 5px;
+}
+
+
+
+input[type="date"]:focus,     input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="email"]:focus,    input[type="month"]:focus,
+input[type="number"]:focus,   input[type="password"]:focus,
+input[type="search"]:focus,   input[type="tel"]:focus,
+input[type="text"]:focus,     input[type="time"]:focus,
+input[type="url"]:focus,      input[type="week"]:focus,
+select:focus,                 textarea:focus {
+  background: #e9fbf8;
+}
+
+
+
+.ns-button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+button {
+  font-weight: 300;
+}
+
+.ns-button,
+input[type="submit"].ns-button,
+input[type="button"].ns-button,
+input[type="reset"].ns-button,
+button.ns-button {
+  @include border-radius(20px);
+}
+
+
+
+form.ns-form-basic.ns-form-side-by-side {
+  .ns-form-row {
+    @include span-columns(12 omega, 12);
+    .ns-form-row-left {
+      text-align: left;
+      @include span-columns(12 omega, 12);
+      > span.ns-form-label,
+      > label {
+        padding: 0 0 5px 0;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+    .ns-form-row-right {
+      @include span-columns(12 omega, 12);
+      position: relative;
+    }
+  }
+  .ns-form-row.ns-form-row-medium {
+    @include span-columns(8 omega, 12);
+    @include suffix(4);
+    @include screen-format(phone) {
+      @include span-columns(12 omega, 12);
+      @include suffix(0);
+    }
+    @include screen-format(nano) {
+      @include span-columns(12 omega, 12);
+      @include suffix(0);
+    }
+  }
+  .ns-form-row.ns-form-row-short {
+    @include span-columns(2, 9);
+  }
+  .ns-form-row.ns-form-row-half {
+    @include span-columns(6, 12);
+    @include screen-format(phone) {
+      @include span-columns(12 omega, 12);
+    }
+    @include screen-format(nano) {
+      @include span-columns(12 omega, 12);
+    }
+  }
+  .ns-form-row.ns-form-row-half:nth-child(2n-1) {
+    @include span-columns(6 omega, 12);
+    @include screen-format(phone) {
+      @include span-columns(12 omega, 12);
+    }
+    @include screen-format(nano) {
+      @include span-columns(12 omega, 12);
+    }
+  }
+
+}
+
+#ns-throbber {
+  border: 2px solid #ffffff;
+  padding: 10px;
+  background-color: #000000;
+  background-position: center center;
+  position: absolute;
+  left: 50%;
+  top: 100px;
+  @include translateX(-50%);
+  @include box-shadow(0 1px 5px rgba(0, 0, 0, .5));
+  @include border-radius(10px);
+}
+
+
+.ns-table-utilities {
+  .ns-table-utilities-left,
+  .ns-table-utilities-right {
+    > input[type="date"],
+    > input[type="datetime"],
+    > input[type="datetime-local"],
+    > input[type="email"],
+    > input[type="month"],
+    > input[type="number"],
+    > input[type="password"],
+    > input[type="search"],
+    > input[type="tel"],
+    > input[type="text"],
+    > input[type="time"],
+    > input[type="url"],
+    > input[type="week"],
+    > select,
+    > textarea {
+      width: 300px;
+    }
+  }
+}
+
+
+
+ul.roadmap {
+  display: block;
+  float: left;
+  width: 100%;
+  padding: 20px 0 0 25px;
+  margin: 0 0 40px 0;
+  list-style-type: disc;
+  font-size: 24px;
+  line-height: 35px;
+  > li {
+    margin: 0 0 10px 0;
+  }
+}
+

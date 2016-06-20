@@ -1,0 +1,33 @@
+// **************************************************
+// Begin: "Throbber Plugin"
+// **************************************************
+
+
+#ns-throbber {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: #000000 asset-url("core/throbber.gif") no-repeat 0 0;  
+}
+#ns-throbber.ng-enter,
+#ns-throbber.ng-leave {
+  @include transition-delay(0);
+  @include transition-timing-function(cubic-bezier(0.250, 0.460, 0.450, 0.940));
+  @include transition-property(all);
+  @include transition-duration(0.4s);
+}
+
+#ns-throbber.ng-enter,
+#ns-throbber.ng-leave.ng-leave-active {
+  @include opacity(0);
+}
+
+#ns-throbber.ng-leave,
+#ns-throbber.ng-enter.ng-enter-active {
+  @include opacity(1);
+}
+
+
+// **************************************************
+// End: "Throbber Plugin"
+// **************************************************

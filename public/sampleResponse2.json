@@ -1,0 +1,104 @@
+{
+  "piece_basics": {
+    "short_name": null,
+    "long_name": null,
+    "jewelry_type": null,
+    "limited_series_number": null,
+    "limited_series_number_total": null,
+    "certification_number": null,
+    "serial_number": null,
+    "cad_number": null,
+    "size": null,
+    "order_type": null,
+    "jeweler_id_number": null,
+    "primary_metal": null,
+    "status": null,
+    "company": null,
+    "sold_price": null,
+    "sold_date": null,
+    "buyer": null,
+    "description": null,
+    "image": null
+  },
+  "piece_pricing": {
+    "metal": [
+      {
+        "id": 6666666666,
+        "name": "Silver",
+        "description": "Used for filigree.",
+        "weight": 10,
+        "source": "Acme Suppliers, Inc.",
+        "style_number": 821,
+        "cost": 110.50
+      },
+      {
+        "id": 5555555555,
+        "name": "Gold",
+        "description": "Rose gold ring.",
+        "weight": 25,
+        "source": "Acme Suppliers, Inc.",
+        "style_number": 744,
+        "cost": 110.50
+      }
+    ],
+    "stones": [
+      {
+        "id": 4444444444,
+        "name": "Diamond",
+        "count": 4,
+        "weight": 2.0,
+        "lab_rating": "VF1",
+        "certification_number": 9876543210,
+        "measurements": "5mm*5mm*5mm",
+        "dollar_per_carat": 2000.00,
+        "cost": 4000.00,
+        "source": "Acme Diamond Company LLC",
+        "supplier_lot_number": 1212121212
+      },
+      {
+        "id": 3333333333,
+        "name": "Emerald",
+        "count": 1,
+        "weight": 0.5,
+        "lab_rating": "VF1",
+        "certification_number": 1234567890,
+        "measurements": "1mm*1mm*1mm",
+        "dollar_per_carat": 1000.00,
+        "cost": 500.00,
+        "source": "Acme Emerald Company LLC",
+        "supplier_lot_number": 3434343434
+      }
+    ],
+    "labor": [
+      {
+        "id": 1111111111,
+        "name": "Engraving",
+        "description": "Engraved the initials 'RAB'.",
+        "cost": 150.00
+      },
+      {
+        "id": 2222222222,
+        "name": "Resizing",
+        "description": "Resized from a size 7 to a size 6.",
+        "cost": 200.00
+      }
+    ]
+  },
+  "piece_construction": {
+    "start_date": null,
+    "finish_date": null,
+    "due_date": null,
+    "labor_cost_total": 100.00,
+    "labor_cost_markup": 1.25,
+    "metal_cost_total": 150.00,
+    "metal_cost_markup": 1.33,
+    "stones_cost_total": 555.00,
+    "stones_cost_markup": 2.00,
+    "miscellaneous_cost_total": 1000.00,
+    "total_cost": null,
+    "total_cost_markup": 2.00,
+    "wholesale_price": 6000.00,
+    "keystone_price": null,
+    "retail_price": null
+  }
+}

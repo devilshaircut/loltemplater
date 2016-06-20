@@ -1,0 +1,45 @@
+// **************************************************
+// Footer SCSS
+// **************************************************
+
+footer.ns-section-main {
+  min-height: $height-footer;
+  font-size: 12px;
+  line-height: 20px;
+  background: $color-footer-background;
+  color: $color-footer-text;
+  position: fixed;
+  bottom: 0;
+  a {
+    color: $color-footer-text;
+  }
+  #ns-footer-left {
+    padding: 20px 0;
+    @include span-columns(7, 12);
+    @include screen-format(phone) {
+      padding: 20px 0 0 0;
+      text-align: center;
+      @include span-columns(12 omega, 12);
+    }
+    @include screen-format(nano) {
+      padding: 20px 0 0 0;
+      text-align: center;
+      @include span-columns(12 omega, 12);
+    }
+  }
+  #ns-footer-right {
+    padding: 20px 0;
+    text-align: right;
+    @include span-columns(5 omega, 12);
+    @include screen-format(phone) {
+      padding: 5px 0 20px 0;
+      text-align: center;
+      @include span-columns(12 omega, 12);
+    }
+    @include screen-format(nano) {
+      padding: 5px 0 20px 0;
+      text-align: center;
+      @include span-columns(12 omega, 12);
+    }
+  }
+}

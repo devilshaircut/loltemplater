@@ -1,0 +1,47 @@
+[
+  {
+    "piece_id": 1000000001,
+    "piece_name": "The Hope Diamond",
+    "piece_creation_date": "2012-04-23T18:25:43.511Z",
+    "piece_price": 1999.99
+  },
+  {
+    "piece_id": 1000000002,
+    "piece_name": "The Red Diamond",
+    "piece_creation_date": "2012-05-23T18:25:43.511Z",
+    "piece_price": 2999.99
+  },
+  {
+    "piece_id": 1000000003,
+    "piece_name": "The Red Orange Diamond",
+    "piece_creation_date": "2012-06-23T18:25:43.511Z",
+    "piece_price": 3999.99
+  },
+  {
+    "piece_id": 1000000004,
+    "piece_name": "The Yellow Diamond",
+    "piece_creation_date": "2012-07-23T18:25:43.511Z",
+    "piece_price": 4999.99
+  },
+  {
+    "piece_id": 1000000005,
+    "piece_name": "The Green Diamond",
+    "piece_creation_date": "2012-08-23T18:25:43.511Z",
+    "piece_price": 5999.99
+  },
+  {
+    "piece_id": 1000000006,
+    "piece_name": "The Blue Diamond",
+    "piece_creation_date": "2012-08-23T18:25:43.511Z",
+    "piece_price": 6999.99
+  }
+]
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,257 @@
+// **************************************************
+// Form SCSS
+// **************************************************
+
+
+// Basic forms have the following structure:
+//
+// form.ns-form-basic {           <= This is the class that surrounds the form, telling it how to arrange.
+//   .ns-form-row {               <= This is a wrapper that delineates form rows.
+//     .ns-form-row-left {}       <= This side is intended to hold the form element label.
+//     .ns-form-row-right {       <= This side is intended to hold the form element.
+//       .ns-form-radio-option {} <= This is a wrapper that delineates a row containing a radio group or checkbox option.
+//     }    
+//   }
+//   .ns-form-row-submit {}       <= This is a wrapper that delineates a form submit row.
+// }
+//
+// In small screen formats, the label/inputs stack rather than arrange side-by-side.
+
+
+// Form Variables
+// **************************************************
+
+$color-form-input-outline: #5a5a5a;
+$color-form-input-outline-error: red;
+$color-form-input-outline-focus: #2adabf;
+$color-form-input-background: #ffffff;
+$color-form-input-text: #404040;
+
+$padding-form-element-top: 14px;     // This is also relevant to _button.css.scss.
+$padding-form-element-right: 10px;  // This is also relevant to _button.css.scss.
+$padding-form-element-bottom: 16px; // This is also relevant to _button.css.scss.
+$padding-form-element-left: 10px;   // This is also relevant to _button.css.scss.
+$padding-form-element-border: 1px;  // This is also relevant to _button.css.scss.
+
+
+// Basic Styles for Form Elements
+// **************************************************
+
+input,
+textarea,
+select,
+label,
+span.ns-form-label, {
+  display: inline-block;
+  margin: 0;
+  font-family: $font-primary;
+  font-size: $font-primary-text-size;
+  line-height: $font-primary-text-line-height;
+  color: $color-form-input-text;
+  -webkit-font-smoothing: antialiased;
+}
+
+label {
+  padding: $padding-form-element-top 0 $padding-form-element-bottom 0;
+  cursor: pointer;
+}
+span.ns-form-label {      // This is a "fake" label.
+  padding: $padding-form-element-top 0 $padding-form-element-bottom 0;
+}
+
+input[type="date"],     input[type="datetime"],
+input[type="datetime-local"], input[type="file"],
+input[type="email"],    input[type="month"],
+input[type="number"],   input[type="password"],
+input[type="search"],   input[type="tel"],
+input[type="text"],     input[type="time"],
+input[type="url"],      input[type="week"],
+select,                 textarea {
+  padding: ($padding-form-element-top - $padding-form-element-border) ($padding-form-element-right - $padding-form-element-border) ($padding-form-element-bottom - $padding-form-element-border) ($padding-form-element-right - $padding-form-element-border);
+  border: $padding-form-element-border solid $color-form-input-outline;
+  background: $color-form-input-background;
+  @include box-sizing(border-box);
+  @include border-radius(5px);
+}
+
+ input[type="file"] {
+  padding: ($padding-form-element-top - $padding-form-element-border - 1) ($padding-form-element-right - $padding-form-element-border) ($padding-form-element-bottom - $padding-form-element-border - 1) ($padding-form-element-right - $padding-form-element-border);
+ }
+
+input[type="date"]:focus,     input[type="datetime"]:focus, // Remove that ugly outline that browsers insist on putting on focused form elements.
+input[type="datetime-local"]:focus, input[type="file"]:focus,
+input[type="email"]:focus,    input[type="month"]:focus,
+input[type="number"]:focus,   input[type="password"]:focus,
+input[type="search"]:focus,   input[type="tel"]:focus,
+input[type="text"]:focus,     input[type="time"]:focus,
+input[type="url"]:focus,      input[type="week"]:focus,
+select:focus,                 textarea:focus {
+  outline: 0;
+  -moz-appearance: none;
+  border-color: $color-form-input-outline-focus;
+}
+
+input[type="date"]:disabled,     input[type="datetime"]:disabled, // Remove that ugly outline that browsers insist on putting on focused form elements.
+input[type="datetime-local"]:disabled, input[type="file"]:disabled,
+input[type="email"]:disabled,    input[type="month"]:disabled,
+input[type="number"]:disabled,   input[type="password"]:disabled,
+input[type="search"]:disabled,   input[type="tel"]:disabled,
+input[type="text"]:disabled,     input[type="time"]:disabled,
+input[type="url"]:disabled,      input[type="week"]:disabled,
+select:disabled,                 textarea:disabled {
+  @include opacity(0.33);
+}
+
+input[type="checkbox"],
+input[type="radio"] {}
+
+select {
+  height: ($font-primary-text-line-height + $padding-form-element-top + $padding-form-element-bottom + $padding-form-element-border + $padding-form-element-border - 2);
+}
+
+textarea {
+  min-height: 100px;
+}
+
+
+// Main Form SCSS
+// **************************************************
+
+form.ns-form-basic {
+  @include span-columns(12 omega, 12);
+  .ns-form-row {
+    margin: 0 0 20px 0;
+    @include span-columns(12 omega, 12);
+    .ns-form-row-left {
+      text-align: right;
+      @include span-columns(3, 12);
+      @include screen-format(phone) {
+        width: 100%;
+        text-align: left;
+      }
+      @include screen-format(nano) {
+        width: 100%;
+        text-align: left;
+      }
+      > span.ns-form-label,
+      > label {
+        font-weight: 700;
+      }
+    }
+    .ns-form-row-right {
+      @include span-columns(9 omega, 12);
+      @include screen-format(phone) {
+        width: 100%;
+      }
+      @include screen-format(nano) {
+        width: 100%;
+      }
+      > input[type="date"],   > input[type="datetime"],
+      > input[type="datetime-local"], input[type="file"],
+      > input[type="email"],  > input[type="month"],
+      > input[type="number"], > input[type="password"],
+      > input[type="search"], > input[type="tel"],
+      > input[type="text"],   > input[type="time"],
+      > input[type="url"],    > input[type="week"],
+      > select,               > textarea {
+        width: 100%;
+        @include box-sizing(border-box);
+      }
+    }
+  }
+  .ns-form-row-submit {
+    margin: 0 0 20px 0;
+    @include span-columns(9 omega, 12);
+    @include prefix(3);
+    @include screen-format(phone) {
+      @include span-columns(12 omega, 12);
+      @include prefix(0);
+    }
+    @include screen-format(nano) {
+      @include span-columns(12 omega, 12);
+      @include prefix(0);
+    }
+    .ns-button,
+    input[type="submit"],
+    input[type="button"],
+    input[type="reset"],
+    button {
+      float: left;
+      margin: 0 5px 0 0;
+      @include screen-format(phone) {
+        width: 100%;
+        margin: 0 0 10px 0;
+      }
+      @include screen-format(nano) {
+        width: 100%;
+        margin: 0 0 10px 0;
+      }
+    }
+  }
+  .ns-form-radio-option {
+    margin: $padding-form-element-top 0 (10 - $padding-form-element-top) 0;
+    position: relative;
+    > input[type="radio"] {
+      margin: 3px 5px 0 0;
+      position: absolute;
+    }
+    > input[type="checkbox"] {
+      margin: 4px 5px 0 0;
+      position: absolute;
+    }
+    > span.ns-form-label,
+    > label {
+      padding: 0 0 0 20px;
+      @include box-sizing(border-box);
+    }
+  }
+}
+
+
+// Handle Validation States
+// **************************************************
+
+form.ns-form-submit-attempted {
+  input[type="date"].ng-invalid,   input[type="datetime"].ng-invalid,
+  input[type="datetime-local"].ng-invalid, input[type="file"].ng-invalid,
+  input[type="email"].ng-invalid,  input[type="month"].ng-invalid,
+  input[type="number"].ng-invalid, input[type="password"].ng-invalid,
+  input[type="search"].ng-invalid, input[type="tel"].ng-invalid,
+  input[type="text"].ng-invalid,   input[type="time"].ng-invalid,
+  input[type="url"].ng-invalid,    input[type="week"].ng-invalid,
+  select.ng-invalid,               textarea.ng-invalid {
+    border-color: $color-form-input-outline-error;
+  }
+  input[type="date"].ng-invalid:focus,   input[type="datetime"].ng-invalid:focus,
+  input[type="datetime-local"].ng-invalid:focus, input[type="file"].ng-invalid:focus,
+  input[type="email"].ng-invalid:focus,  input[type="month"].ng-invalid:focus,
+  input[type="number"].ng-invalid:focus, input[type="password"].ng-invalid:focus,
+  input[type="search"].ng-invalid:focus, input[type="tel"].ng-invalid:focus,
+  input[type="text"].ng-invalid:focus,   input[type="time"].ng-invalid:focus,
+  input[type="url"].ng-invalid:focus,    input[type="week"].ng-invalid:focus,
+  select.ng-invalid:focus,               textarea.ng-invalid:focus {
+    border-color: $color-form-input-outline-focus;
+  }
+}
+
+input[type="date"].ng-dirty.ng-invalid,   input[type="datetime"].ng-dirty.ng-invalid,
+input[type="datetime-local"].ng-dirty.ng-invalid, input[type="file"].ng-dirty.ng-invalid,
+input[type="email"].ng-dirty.ng-invalid,  input[type="month"].ng-dirty.ng-invalid,
+input[type="number"].ng-dirty.ng-invalid, input[type="password"].ng-dirty.ng-invalid,
+input[type="search"].ng-dirty.ng-invalid, input[type="tel"].ng-dirty.ng-invalid,
+input[type="text"].ng-dirty.ng-invalid,   input[type="time"].ng-dirty.ng-invalid,
+input[type="url"].ng-dirty.ng-invalid,    input[type="week"].ng-dirty.ng-invalid,
+select.ng-dirty.ng-invalid,               textarea.ng-dirty.ng-invalid {
+  border-color: $color-form-input-outline-error;
+}
+
+
+
+
+
+
+
+
+
+
+

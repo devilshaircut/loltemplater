@@ -1,0 +1,21 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: loltemplater_development
+  pool: 5
+  username: 
+  password:
+  host: localhost
+  port: 5432
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: loltemplater_test
+  pool: 5
+  username: 
+  password:
+  host: localhost
+  port: 5432
+
+

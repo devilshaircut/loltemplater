@@ -1,0 +1,158 @@
+
+
+  <section class="ns-section-main">
+    <div class="ns-section-wrapper">
+
+      <form 
+        name="ns_form"
+        class="ns-form-basic"
+        ng-class="{ 'ns-form-submit-attempted' : nsStateMachine.forms.states.ns_form.submit_attempted === true }"
+        >
+
+        <div class="ns-form-row">
+          <div class="ns-form-row-left">
+            <label for="ns-form-input-1">Form Label:</label>
+          </div>
+          <!-- .ns-form-row-left -->
+          <div class="ns-form-row-right">
+            <input
+              required
+              type="text"
+              id="ns-form-input-1"
+              ng-model="ns_form.input_1"
+              >
+          </div>
+          <!-- .ns-form-row-right -->
+        </div>
+        <!-- .ns-form-row -->
+
+        <div class="ns-form-row">
+          <div class="ns-form-row-left">
+            <label for="ns-form-input-2">Form Label:</label>
+          </div>
+          <!-- .ns-form-row-left -->
+          <div class="ns-form-row-right">
+            <input
+              required
+              type="email"
+              id="ns-form-input-2"
+              ng-model="ns_form.input_2"
+              >
+          </div>
+          <!-- .ns-form-row-right -->
+        </div>
+        <!-- .ns-form-row -->
+
+        <div class="ns-form-row">
+          <div class="ns-form-row-left">
+            <label for="ns-form-input-3">Form Label:</label>
+          </div>
+          <!-- .ns-form-row-left -->
+          <div class="ns-form-row-right">
+            <select
+              required
+              id="ns-form-input-3"
+              ng-model="ns_form.input_3"
+              >
+              <option value="" selected disabled>Select an option ...</option>
+              <option value="Option 1">Option 1</option>
+              <option value="Option 2">Option 2</option>
+              <option value="Option 3">Option 3</option>
+            </select>
+          </div>
+          <!-- .ns-form-row-right -->
+        </div>
+        <!-- .ns-form-row -->
+
+        <div class="ns-form-row">
+          <div class="ns-form-row-left">
+            <span class="ns-form-label">Form Label:</span><!-- .ns-form-label -->
+          </div>
+          <!-- .ns-form-row-left -->
+          <div class="ns-form-row-right">
+            <div class="ns-form-radio-option">
+              <input
+                required
+                type="radio"
+                name="ns_form_input_4"
+                id="ns-form-input-4-a"
+                value="true"
+                ng-model="ns_form.input_4"
+                >
+              <label for="ns-form-input-4-a">This is the label for a radio button option.</label>
+            </div>
+            <!-- .ns-form-radio-option -->
+            <div class="ns-form-radio-option">
+              <input
+                required
+                type="radio"
+                name="ns_form_input_4"
+                id="ns-form-input-4-b"
+                value="false"
+                ng-model="ns_form.input_4"
+                >
+              <label for="ns-form-input-4-b">This is the label for a radio button option.</label>
+            </div>
+            <!-- .ns-form-radio-option -->
+          </div>
+          <!-- .ns-form-row-right -->
+        </div>
+        <!-- .ns-form-row -->
+
+        <div class="ns-form-row">
+          <div class="ns-form-row-left">
+            <span class="ns-form-label">Form Label:</span><!-- .ns-form-label -->
+          </div>
+          <!-- .ns-form-row-left -->
+          <div class="ns-form-row-right">
+            <div class="ns-form-radio-option">
+              <input
+                required
+                type="checkbox"
+                name="ns_form_input_5"
+                id="ns-form-input-5"
+                ng-model="ns_form.input_5"
+                >
+              <label for="ns-form-input-5">This is the label for a checkbox input.</label>
+            </div>
+            <!-- .ns-form-radio-option -->
+          </div>
+          <!-- .ns-form-row-right -->
+        </div>
+        <!-- .ns-form-row -->
+
+        <div class="ns-form-row">
+          <div class="ns-form-row-left">
+            <label for="ns-form-input-6">Form Label:</label>
+          </div>
+          <!-- .ns-form-row-left -->
+          <div class="ns-form-row-right">
+            <textarea
+              required
+              id="ns-form-input-6"
+              ng-model="ns_form.input_6"
+              >
+            </textarea>
+          </div>
+          <!-- .ns-form-row-right -->
+        </div>
+        <!-- .ns-form-row -->
+
+        <div class="ns-form-row-submit">
+          <input
+            type="submit"
+            value="Submit Form"
+            ng-click="nsStateMachine.forms.submit('ns_form', ns_form.$valid)"
+            />
+          <a class="ns-button ns-button-line" href="/">Go Back</a>
+        </div>
+        <!-- .ns-form-row-submit -->
+
+      </form>
+      <!-- form.ns-form-basic -->
+
+    </div>
+    <!-- .ns-section-wrapper -->
+  </section>
+  <!-- section.ns-section-main -->
+

@@ -1,0 +1,202 @@
+// Use this file to override all other SCSS.
+// It has a boilerplate structure.
+// Use it to your advantage!
+
+// ****************************************************************************************************
+// 
+// 0. Documentation / Introduction
+// 
+// ****************************************************************************************************
+//
+//
+// **************************************************
+// Table of Contents
+// **************************************************
+// 
+// 1. SCSS Variables
+//    - Color Theme
+//    - Layout Sizing
+//    - Font Stacks
+// 
+// 2. SCSS Includes
+// 
+// 3. General Cascade
+//    - Fundamental Page Structure
+//    - HTML Primitives
+// 
+// 4. Utility Classes
+// 
+// 5. Z-Indices
+//
+//
+// **************************************************
+// SCSS Guidelines
+// **************************************************
+//
+// - Write SCSS with the following structure:
+//
+//   element#id.class {                         <= Styles should be written in that order, but may not contain every specifier in the selector.
+//     display: <value>;                        <= This is optional.
+//     visibility: <value>;                     <= This is optional.
+//     float: <value>;                          <= This is optional.
+//     box-sizing-properties: <value>;          <= This is optional. Examples include: width, height, min-width, min-height, padding, margin, border. etc.
+//     superficial-properties: <value>;         <= This is optional. Examples include: font-size, line-height, font-weight, etc.
+//     positioning-properties: <value>;         <= This is optional. Examples include: position, top, right, bottom, left.
+//     @include mixin-name(<value>);            <= This is optional.
+//     @include screen-format(monitor) { ... }  <= This is optional.
+//     @include screen-format(laptop) { ... }   <= This is optional.
+//     @include screen-format(tablet) { ... }   <= This is optional.
+//     @include screen-format(phone) { ... }    <= This is optional.
+//     @include screen-format(nano) { ... }     <= This is optional.
+//     nested element#id.class { ... }          <= This is optional.
+// }
+//
+// - Include responsive features for any SCSS block you write.
+// - Use hyphens to separate words for classes and IDs. E.g. #this-is-an-id-selector.
+// - Try and avoid excessive specificity (not absolute rule; just a guideline).
+// - A rule-of-thumb would be to omit the HTML selector if it is a <div> or <span> because they are generic.
+// - You might include an HTML selector if it is more semantic, such as <nav> or <footer>.
+// - When possible, document your code LIBERALLY.
+// - When naming classes or variables, use words that increase in specificity, as in: "general"-"more-specific"-"most-specific". E.g. "color-button-text".
+//
+// **************************************************
+// Main Page Hierarchy/Structure
+// **************************************************
+//
+// html {
+//   body {
+//     #ns-screen-background                    { ... }   This section is available on every view. It is activated when Angular code requests a background screen (e.g. modals and warning popups).
+//     #ns-warning                              { ... }   This section is available on every view. It is activated when Angular code requests a warning popup.
+//     nav.ns-section-main                      { ... }   This section is available on every view. It is the main app navigation.
+//     #ns-slide-controls                       { ... }   This section is available on every view. It is the "hamburger slider" controls that display in responsive screen formats.
+//     <!-- BEGIN: "yielded view" content. -->
+//     #ns-modal                                { ... }   This section is optionally included inside of a rails view when a page has a modal.
+//     section.ns-section-main {                          This markup is mandatory to wrap all page content. It controls various page states in responsive or dynamic views. It can be used multiple times per page.
+//       .ns-section-wrapper                    { ... }   This markup is mandatory to wrap all page content. It centers and provides a determined width to page content while still allowing edge-to-edge backgrounds in its wrapping section.
+//     }
+//     <!-- END:   "yielded view" content. -->
+//     footer.ns-section-main                   { ... }   This section is available on every view. It is the main app footer.
+//   }
+// }
+// 
+//
+// ****************************************************************************************************
+
+
+
+// ****************************************************************************************************
+// 
+// 1. SCSS Variables
+// 
+// ****************************************************************************************************
+
+
+// **************************************************
+// Color Theme
+// **************************************************
+
+// $ns-color-variable: #000000;
+
+
+// **************************************************
+// Layout Sizing
+// **************************************************
+
+// $ns-size-variable: 10px;
+
+
+// **************************************************
+// Font Stacks
+// **************************************************
+
+// $ns-size-variable: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+
+
+// ****************************************************************************************************
+// 
+// 2. SCSS Includes
+// 
+// ****************************************************************************************************
+
+
+// @import "path/to/include";
+
+
+
+// ****************************************************************************************************
+// 
+// 3. General Cascade
+// 
+// ****************************************************************************************************
+
+
+// **************************************************
+// Fundamental Page Structure
+// **************************************************
+
+// html {}
+
+// body {}
+
+
+// **************************************************
+// HTML Primitives
+// **************************************************
+
+// a {}
+
+// a:hover {}
+
+// p {}
+
+// strong {}
+
+// em {}
+
+// hr {}
+
+
+
+// ****************************************************************************************************
+// 
+// 4. Utility Classes
+// 
+// ****************************************************************************************************
+
+
+// **************************************************
+// Header Formatting
+// **************************************************
+
+// .ns-utility-class {}
+
+
+
+// ****************************************************************************************************
+// 
+// 5. Z-Indices
+// 
+// ****************************************************************************************************
+
+
+// **************************************************
+// Directory of Z-Indices
+// **************************************************
+//
+// 900-999: RESERVED
+// 800-899: Warnings.
+// 700-799: Modals.
+// 600-699: Page Screen.
+// 500-599: Navigation in Fullscreen Mode.
+// 400-499: Hamburger Slider Controls.
+// 300-399: Footer.
+// 200-299: Main Page Content.
+// 100-199: Navigation in Responsive Mode.
+// 000-099: RESERVED
+//
+// **************************************************
+
+// .ns-selector { z-index: 500; }
+
+

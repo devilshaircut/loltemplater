@@ -1,0 +1,584 @@
+  <div
+    id="ns-test-modal-1"
+    class="ns-modal"
+    ng-if="nsStateMachine.modal.isVisible && nsStateMachine.modal.currentModal === 'ns-test-modal-1'"
+    ng-class="{ 'ns-modal-visible' : nsStateMachine.modal.isVisible && nsStateMachine.modal.currentModal === 'ns-test-modal-1' }"
+    >
+    <span class="ns-modal-close" ng-click="nsStateMachine.modal.close()">&times;</span><!-- .ns-modal-close -->
+    <h3>Modal Header 1</h3>
+    <p>Modal Content 1</p>
+    <button ng-click="nsStateMachine.modal.close()">Close Modal</button>
+  </div>
+  <!-- .ns-modal -->
+
+  <div
+    id="ns-test-modal-2"
+    class="ns-modal"
+    ng-if="nsStateMachine.modal.isVisible && nsStateMachine.modal.currentModal === 'ns-test-modal-2'"
+    ng-class="{ 'ns-modal-visible' : nsStateMachine.modal.isVisible && nsStateMachine.modal.currentModal === 'ns-test-modal-2' }"
+    >
+    <span class="ns-modal-close" ng-click="nsStateMachine.modal.close()">&times;</span><!-- .ns-modal-close -->
+    <h3>Modal Header 2</h3>
+    <p>Modal Content 2</p>
+    <button ng-click="nsStateMachine.modal.close()">Close Modal</button>
+  </div>
+  <!-- .ns-modal -->
+
+  <div
+    id="ns-test-modal-3"
+    class="ns-modal"
+    ng-if="nsStateMachine.modal.isVisible && nsStateMachine.modal.currentModal === 'ns-test-modal-3'"
+    ng-class="{ 'ns-modal-visible' : nsStateMachine.modal.isVisible && nsStateMachine.modal.currentModal === 'ns-test-modal-3' }"
+    >
+    <span class="ns-modal-close" ng-click="nsStateMachine.modal.close()">&times;</span><!-- .ns-modal-close -->
+    <h3>Modal Header 3</h3>
+    <p>Modal Content 3</p>
+    <button ng-click="nsStateMachine.modal.close()">Close Modal</button>
+  </div>
+  <!-- .ns-modal -->
+
+
+
+  <section class="ns-section-main">
+    <div class="ns-section-wrapper">
+      <h1 class="ns-header-basic">Tables</h1><!-- .ns-header-basic -->
+    </div>
+    <!-- .ns-section-wrapper -->
+  </section>
+  <!-- section.ns-section-main -->
+
+  <section class="ns-section-main">
+    <div class="ns-section-wrapper">
+
+      <h3 class="ns-header-lined">Stones Costs</h3><!-- h3.ns-header-lined -->
+
+      <div class="ns-table-utilities">
+        <div class="ns-table-utilities-left">
+          <input ng-model="stoneSearch" type="text" placeholder="Search stones by keyword(s) ..." />
+          <label>
+            <em><ng-pluralize count="filteredStones.length" when="{'0': 'No result found out', 'one': 'Showing 1 result out', 'other': 'Showing {} results out'}"></ng-pluralize> of {{piece.piece_pricing.stones.length}} in total.</em>
+          </label><!-- .ns-form-label-inline -->
+        </div>
+        <!-- .ns-table-utilities-left -->
+        <div class="ns-table-utilities-right">
+          <button class="ns-button" ng-click="nsStateMachine.modal.open('ns-test-modal-1')">Add a Stone to Piece</button><!-- button.ns-button -->
+        </div>
+        <!-- .ns-table-utilities-right -->
+      </div>
+      <!-- .ns-table-utilities -->
+
+      <div class="ns-table-wrapper">
+        <table class="ns-table">
+          <colgroup>
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+          </colgroup>
+          <thead>
+            <tr>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('stones', 'name');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['stones']['currentColumn'] == 'name' }"
+                >
+                Name <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('stones', 'name');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('stones', 'name');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('stones', 'count');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['stones']['currentColumn'] == 'count' }"
+                >
+                Count <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('stones', 'count');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('stones', 'count');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('stones', 'weight');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['stones']['currentColumn'] == 'weight' }"
+                >
+                Weight <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('stones', 'weight');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('stones', 'weight');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('stones', 'lab_rating');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['stones']['currentColumn'] == 'lab_rating' }"
+                >
+                Lab Rating <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('stones', 'lab_rating');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('stones', 'lab_rating');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('stones', 'certification_number');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['stones']['currentColumn'] == 'certification_number' }"
+                >
+                Cert. # <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('stones', 'certification_number');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('stones', 'certification_number');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('stones', 'measurements');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['stones']['currentColumn'] == 'measurements' }"
+                >
+                Dimensions <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('stones', 'measurements');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('stones', 'measurements');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('stones', 'source');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['stones']['currentColumn'] == 'source' }"
+                >
+                Source <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('stones', 'source');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('stones', 'source');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('stones', 'supplier_lot_number');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['stones']['currentColumn'] == 'supplier_lot_number' }"
+                >
+                Lot Number <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('stones', 'supplier_lot_number');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('stones', 'supplier_lot_number');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('stones', 'dollar_per_carat');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['stones']['currentColumn'] == 'dollar_per_carat' }"
+                >
+                $ Per Carat <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('stones', 'dollar_per_carat');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('stones', 'dollar_per_carat');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('stones', 'cost');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['stones']['currentColumn'] == 'cost' }"
+                >
+                Cost <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('stones', 'cost');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('stones', 'cost');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th class="ns-column-align-right">Delete?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              ng-repeat="stone in filteredStones = (piece.piece_pricing.stones
+                | filter: stoneSearch
+                | orderBy: nsStateMachine.dataTable.state['stones']['currentColumn']:nsStateMachine.dataTable.state['stones']['reverseState'])"
+              >
+              <td>{{stone["name"]}}</td>
+              <td>{{stone["count"]}}</td>
+              <td>{{stone["weight"]}}</td>
+              <td>{{stone["lab_rating"]}}</td>
+              <td>{{stone["certification_number"]}}</td>
+              <td>{{stone["measurements"]}}</td>
+              <td>{{stone["source"]}}</td>
+              <td>{{stone["supplier_lot_number"]}}</td>
+              <td>{{stone["dollar_per_carat"] | currency}}</td>
+              <td>{{stone["cost"] | currency}}</td>
+              <td class="ns-column-align-right">
+                <button
+                  class="ns-button ns-button-small"
+                  ng-click="nsStateMachine.dataTable.methods.deleteItem('stones', stone['id'], deleteComponentAction)"
+                  >
+                  Delete
+                </button><!-- button.ns-button -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- .ns-table -->
+      </div>
+      <!-- .ns-table-wrapper -->
+
+      <h3 class="ns-header-lined">Metal Costs</h3><!-- h3.ns-header-lined -->
+
+      <div class="ns-table-utilities">
+        <div class="ns-table-utilities-left">
+          <input ng-model="metalSearch" type="text" placeholder="Search metal by keyword(s) ..." />
+          <label>
+            <em><ng-pluralize count="filteredMetal.length" when="{'0': 'No result found out', 'one': 'Showing 1 result out', 'other': 'Showing {} results out'}"></ng-pluralize> of {{piece.piece_pricing.metal.length}} in total.</em>
+          </label><!-- .ns-form-label-inline -->
+        </div>
+        <!-- .ns-table-utilities-left -->
+        <div class="ns-table-utilities-right">
+          <button class="ns-button" ng-click="nsStateMachine.modal.open('ns-test-modal-2')">Add a Metal to Piece</button><!-- button.ns-button -->
+        </div>
+        <!-- .ns-table-utilities-right -->
+      </div>
+      <!-- .ns-table-utilities -->
+
+      <div class="ns-table-wrapper">
+        <table class="ns-table">
+          <colgroup>
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+          </colgroup>
+          <thead>
+            <tr>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('metal', 'name');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['metal']['currentColumn'] == 'name' }"
+                >
+                Name <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('metal', 'name');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('metal', 'name');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('metal', 'description');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['metal']['currentColumn'] == 'description' }"
+                >
+                Description <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('metal', 'description');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('metal', 'description');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('metal', 'weight');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['metal']['currentColumn'] == 'weight' }"
+                >
+                Weight <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('metal', 'weight');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('metal', 'weight');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('metal', 'source');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['metal']['currentColumn'] == 'source' }"
+                >
+                Source <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('metal', 'source');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('metal', 'source');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('metal', 'style_number');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['metal']['currentColumn'] == 'style_number' }"
+                >
+                Style # <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('metal', 'style_number');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('metal', 'style_number');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('metal', 'cost');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['metal']['currentColumn'] == 'cost' }"
+                >
+                Cost <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('metal', 'cost');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('metal', 'cost');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th class="ns-column-align-right">Delete?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              ng-repeat="metal in filteredMetal = (piece.piece_pricing.metal
+                | filter: metalSearch
+                | orderBy: nsStateMachine.dataTable.state['metal']['currentColumn']:nsStateMachine.dataTable.state['metal']['reverseState'])"
+              >
+              <td>{{metal["name"]}}</td>
+              <td>{{metal["description"]}}</td>
+              <td>{{metal["weight"]}}</td>
+              <td>{{metal["source"]}}</td>
+              <td>{{metal["style_number"]}}</td>
+              <td>{{metal["cost"] | currency}}</td>
+              <td class="ns-column-align-right">
+                <button
+                  class="ns-button ns-button-small"
+                  ng-click="nsStateMachine.dataTable.methods.deleteItem('metal', metal['id'], deleteComponentAction)"
+                  >
+                  Delete
+                </button><!-- button.ns-button -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- .ns-table -->
+      </div>
+      <!-- .ns-table-wrapper -->
+
+      <h3 class="ns-header-lined">Labor Costs</h3><!-- h3.ns-header-lined -->
+
+      <div class="ns-table-utilities">
+        <div class="ns-table-utilities-left">
+          <input ng-model="laborSearch" type="text" placeholder="Search labor by keyword(s) ..." />
+          <label>
+            <em><ng-pluralize count="filteredLabor.length" when="{'0': 'No result found out', 'one': 'Showing 1 result out', 'other': 'Showing {} results out'}"></ng-pluralize> of {{piece.piece_pricing.miscellaneous.length}} in total.</em>
+          </label><!-- .ns-form-label-inline -->
+        </div>
+        <!-- .ns-table-utilities-left -->
+        <div class="ns-table-utilities-right">
+          <button class="ns-button" ng-click="nsStateMachine.modal.open('ns-test-modal-3')">Add a Labor to Piece</button><!-- button.ns-button -->
+        </div>
+        <!-- .ns-table-utilities-right -->
+      </div>
+      <!-- .ns-table-utilities -->
+
+      <div class="ns-table-wrapper">
+        <table class="ns-table">
+          <colgroup>
+            <col />
+            <col />
+            <col />
+          </colgroup>
+          <thead>
+            <tr>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('labor', 'name');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['labor']['currentColumn'] == 'name' }"
+                >
+                Name <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('labor', 'name');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('labor', 'name');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('labor', 'description');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['labor']['currentColumn'] == 'description' }"
+                >
+                Description <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('labor', 'description');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('labor', 'description');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('labor', 'cost');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['labor']['currentColumn'] == 'cost' }"
+                >
+                Cost <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('labor', 'cost');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('labor', 'cost');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th class="ns-column-align-right">Delete?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              ng-repeat="labor in filteredLabor = (piece.piece_pricing.labor
+                | filter: laborSearch
+                | orderBy: nsStateMachine.dataTable.state['labor']['currentColumn']:nsStateMachine.dataTable.state['labor']['reverseState'])"
+              >
+              <td>{{labor["name"]}}</td>
+              <td>{{labor["description"]}}</td>
+              <td>{{labor["cost"] | currency}}</td>
+              <td class="ns-column-align-right">
+                <button
+                  class="ns-button ns-button-small"
+                  ng-click="nsStateMachine.dataTable.methods.deleteItem('labor', labor['id'], deleteComponentAction)"
+                  >
+                  Delete
+                </button><!-- button.ns-button -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- .ns-table -->
+      </div>
+      <!-- .ns-table-wrapper -->
+
+    </div>
+    <!-- .ns-section-wrapper -->
+  </section>
+  <!-- section.ns-section-main -->
+
+
+
+
+
+
+

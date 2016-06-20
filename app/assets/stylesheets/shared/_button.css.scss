@@ -1,0 +1,184 @@
+// **************************************************
+// Button SCSS
+// **************************************************
+
+
+// Button Variables
+// **************************************************
+
+$color-button-background: #191818;
+$color-button-text: #ffffff;
+
+$color-button-background-warning: #e96572;
+$color-button-text-warning: #ffffff;
+
+$color-button-background-caution: #e0cc1f;
+$color-button-text-caution: #ffffff;
+
+$color-button-background-confirm: #2adabf;
+$color-button-text-confirm: #ffffff;
+
+$color-button-line-background: transparent;
+$color-button-line-line: #2adabf;
+$color-button-line-text: #2adabf;
+
+$padding-button-top: 9px;     // This is also relevant to _form.css.scss.
+$padding-button-right: 15px;  // This is also relevant to _form.css.scss.
+$padding-button-bottom: 11px; // This is also relevant to _form.css.scss.
+$padding-button-left: 15px;   // This is also relevant to _form.css.scss.
+$padding-button-border: 1px;  // This is also relevant to _form.css.scss.
+
+
+// Main Button SCSS
+// **************************************************
+
+.ns-button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+button {
+  display: inline-block;
+  padding: $padding-button-top $padding-button-right $padding-button-bottom $padding-button-left;
+  margin: 0;
+  border: none;
+  color: $color-button-text;
+  background: $color-button-background;
+  font-size: $font-primary-text-size;
+  line-height: $font-primary-text-line-height;
+  font-family: $font-primary;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -webkit-appearance: none;
+  @include box-sizing(border-box);
+  @include border-radius(2px);
+}
+
+.ns-button:active,              // Shifting the buttons on click gives them a nice tactile feel.
+input[type="submit"]:active,    // When the user down clicks on a button, shift it down 2 pixels.
+input[type="button"]:active,
+input[type="reset"]:active,
+button:active {
+  position: relative;
+  top: 2px;
+}
+
+.ns-button:before,              // This block of code is necessary to fix the Chrome click target area bug.
+input[type="submit"]:before,    // Shifting the button's position, causes a row of pixels equal to the shift offset to become "dead".
+input[type="button"]:before,    // As "dead" pixels, when clicked, they do not fire onClick events as they should.
+input[type="reset"]:before,
+button:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+}
+
+.ns-button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+button:hover {
+  text-decoration: none;
+  @include opacity(.66);
+}
+
+.ns-button:focus,               // This block of code is necessary to remove the ugly outline when buttons become focused.
+input[type="submit"]:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+button:focus {
+  outline: none;
+}
+
+
+
+// "Warning" (Red) Variation
+// **************************************************
+
+.ns-button.ns-button-warning,
+input[type="submit"].ns-button-warning,
+input[type="button"].ns-button-warning,
+input[type="reset"].ns-button-warning,
+button.ns-button-warning {
+  background: $color-button-background-warning;
+  color: $color-button-text-warning;
+}
+
+
+// "Confirm" (Green) Variation
+// **************************************************
+
+.ns-button.ns-button-confirm,
+input[type="submit"].ns-button-confirm,
+input[type="button"].ns-button-confirm,
+input[type="reset"].ns-button-confirm,
+button.ns-button-confirm {
+  background: $color-button-background-confirm;
+  color: $color-button-text-confirm;
+}
+
+
+// "Caution" (Yellow) Variation
+// **************************************************
+
+.ns-button.ns-button-caution,
+input[type="submit"].ns-button-caution,
+input[type="button"].ns-button-caution,
+input[type="reset"].ns-button-caution,
+button.ns-button-caution {
+  background: $color-button-background-caution;
+  color: $color-button-text-caution;
+}
+
+
+// "Line" Variation
+// **************************************************
+
+.ns-button.ns-button-line,
+input[type="submit"].ns-button-line,
+input[type="button"].ns-button-line,
+input[type="reset"].ns-button-line,
+button.ns-button-line {
+  padding: ($padding-button-top - $padding-button-border) ($padding-button-right - $padding-button-border) ($padding-button-bottom - $padding-button-border) ($padding-button-left - $padding-button-border);
+  border: $padding-button-border solid $color-button-line-line;
+  background: $color-button-line-background;
+  color: $color-button-line-text;
+}
+
+
+// "Small" Variation
+// **************************************************
+
+.ns-button.ns-button-small,
+input[type="submit"].ns-button-small,
+input[type="button"].ns-button-small,
+input[type="reset"].ns-button-small,
+button.ns-button-small {
+  padding: 2px 8px 3px 8px;
+  text-transform: uppercase;
+  font-size: 11px;
+  line-height: $font-primary-text-line-height;
+  font-weight: 700;
+}
+
+
+// "Large" Variation
+// **************************************************
+
+.ns-button.ns-button-large,
+input[type="submit"].ns-button-large,
+input[type="button"].ns-button-large,
+input[type="reset"].ns-button-large,
+button.ns-button-large {
+  text-transform: uppercase;
+  font-size: 36px;
+  line-height: 50px;
+  font-weight: 700;
+  font-family: $font-secondary;
+}
+

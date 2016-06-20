@@ -1,0 +1,12 @@
+  <div
+    id="ns-sample-modal"
+    class="ns-modal"
+    ng-if="nsStateMachine.modal.isVisible && nsStateMachine.modal.currentModal === 'ns-sample-modal'"
+    ng-class="{ 'ns-modal-visible' : nsStateMachine.modal.isVisible && nsStateMachine.modal.currentModal === 'ns-sample-modal' }"
+    >
+    <span class="ns-modal-close" ng-click="nsStateMachine.modal.close()">&times;</span><!-- .ns-modal-close -->
+    <h3>Sample Modal Header</h3>
+    <p>Sample Modal Content</p>
+    <button ng-click="nsStateMachine.modal.close()">Close Modal</button>
+  </div>
+  <!-- .ns-modal -->

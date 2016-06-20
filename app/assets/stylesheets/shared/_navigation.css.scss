@@ -1,0 +1,143 @@
+// **************************************************
+// Navigation SCSS
+// **************************************************
+
+nav.ns-section-main {
+  height: $height-top-bar;
+  background: $color-top-bar-background;
+  color: $color-top-bar-text;
+  position: fixed;
+  top: 0;
+  @include transition-property(none);
+  @include transition-duration(0);
+  @include transition-timing-function(none); 
+  @include transition-delay(0);
+  @include screen-format(phone) {
+    width: 100%;
+    height: 100%;
+    left: 0;
+  }
+  @include screen-format(nano) {
+    width: 100%;
+    height: 100%;
+    left: 0;
+  }
+  > .ns-section-wrapper {
+    height: 100%;
+  }
+  a#ns-home {
+    display: inline-block;
+    float: left;
+    height: $height-top-bar;
+    width: 200px;
+    > img {
+      display: inline-block;
+      float: left;
+      height: $height-top-bar;
+      width: 200px;
+    }
+  }
+  ol#ns-navigation {
+    display: inline-block;
+    float: right;
+    height: $height-top-bar;
+    @include screen-format(phone) {
+      width: 100%;
+    }
+    @include screen-format(nano) {
+      width: 100%;
+    }
+    > li {
+      display: inline-block;
+      float: left;
+      height: $height-top-bar;
+      @include screen-format(phone) {
+        width: 100%;
+        height: $height-top-bar-collapsed;
+      }
+      @include screen-format(nano) {
+        width: 100%;
+        height: $height-top-bar-collapsed;
+      }
+      > a {
+        display: inline-block;
+        float: left;
+        height: $height-top-bar;
+        margin: 0 0 0 30px;
+        line-height: $height-top-bar;
+        color: $color-top-bar-text;
+        @include screen-format(phone) {
+          width: 100%;
+          height: $height-top-bar-collapsed;
+          margin: 0;
+        }
+        @include screen-format(nano) {
+          width: 100%;
+          height: $height-top-bar-collapsed;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+
+
+// Navigation's "Shadow" State
+// **************************************************
+
+// This is the state that changes the navigation's appearance when the page is scrolled down from the top.
+// For example, it could change heights or invert coloration.
+
+nav.ns-section-main.ns-nav-shadow-state {}
+
+
+// Navigation's "Slide Out" State
+// **************************************************
+
+// In responsive views, the navigations does not display as a top bar.
+// Instead, it displays as a panel hidden behind the main page content.
+// When the user clicks the "hamburger" menu, the page content slides to the side, revealing the navigation.
+
+body.ns-slider-expanded .ns-section-main {
+  left: 80%;
+}
+body.ns-slider-expanded nav.ns-section-main {
+  left: 0;
+}
+
+
+// Navigations "Hamburger" Menu "Slider"
+// **************************************************
+
+// In responsive views, the navigations does not display as a top bar.
+// This styles the "hamburger" menu, a clickable element that causes the page content to slide to the side, revealing the navigation.
+
+#ns-slide-controls.ns-section-main {
+  float: left;
+  width: 100%;
+  height: $height-top-bar;
+  background: $color-top-bar-background;
+  color: $color-top-bar-text;
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  display: none;
+  visibility: hidden;
+  @include screen-format(phone) {
+    display: inline-block;
+    visibility: visible;
+  }
+  @include screen-format(nano) {
+    display: inline-block;
+    visibility: visible;
+  }
+  #ns-slide-control-left {
+    display: inline-block;
+    float: left;
+    width: 30px;
+    height: 25px;
+    margin: 17px 0 0 0;
+    background: transparent asset-url("core/ns-nav-expander.png") no-repeat 0 0;
+  }
+}

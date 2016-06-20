@@ -1,0 +1,29 @@
+<ol id="ns-notifications">
+  <li
+    class="ns-notification"
+    ng-repeat="(notificationName, notificationObject) in nsStateMachine.notifications.state"
+    ng-if="nsStateMachine.notifications.state[notificationName].show"
+    ng-class="{
+      'ns-notification-visible' : nsStateMachine.notifications.state[notificationName].show,
+      'ns-notification-warning' : nsStateMachine.notifications.state[notificationName].type === 'warning',
+      'ns-notification-caution' : nsStateMachine.notifications.state[notificationName].type === 'caution',
+      'ns-notification-success' : nsStateMachine.notifications.state[notificationName].type === 'success',
+    }"
+    >
+    <span
+      class="ns-notification-close"
+      ng-click="nsStateMachine.notifications.methods.deleteNotification(notificationName)"
+      >
+      &times;
+    </span>
+    <!-- .ns-modal-close -->
+    {{notificationObject.message}}
+  </li>
+</ol>
+<!-- #ns-notifications -->
+
+
+
+
+
+

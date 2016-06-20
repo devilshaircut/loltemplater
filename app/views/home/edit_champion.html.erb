@@ -1,0 +1,1977 @@
+
+
+  <section class="ns-section-main">
+    <div class="ns-section-wrapper">
+
+      <div id="edit-champion-header">
+        <h1 class="ns-header-basic">Edit Champion</h1>
+        <button class="ns-button ns-button-line ns-button-line-red" ng-click="startOverWithBlankChampionTemplate();">Clear Champion</button>
+        <button class="ns-button ns-button-line" type="submit" ng-click="saveChampion();">Save Champion</button>
+      </div>
+      <!-- #edit-champion-header -->
+
+      <form 
+        name="edit_champion"
+        class="ns-form-basic ns-form-side-by-side"
+        ng-class="{ 'ns-form-submit-attempted' : nsStateMachine.forms.states.edit_champion.submit_attempted === true }"
+        >
+
+        <div id="edit-champion-section-intro" class="edit-champion-section" ng-style="{ 'background-image': 'url(' + championForm.introduction.splash + ')' }">
+
+          <div id="edit-champion-section-left">
+
+            <div class="ns-form-row">
+              <div class="ns-form-row-left">
+                <label for="edit-champion-intro-portrait">Portrait:</label>
+              </div>
+              <!-- .ns-form-row-left -->
+              <div class="ns-form-row-right">
+                <div id="edit-champion-intro-portrait-display">
+                  <img id="champion-portrait" ng-src="{{championForm.introduction.portrait}}" alt="Portrait placeholder image." />
+                  
+                </div>
+                <!-- #edit-champion-intro-portrait-display -->
+                <input
+                  type="file"
+                  id="edit-champion-intro-portrait"
+                  ng-model="championForm.introduction.portrait"
+                  >
+                <button class="ns-button ns-button-line ns-button-green" ng-click="uploadImage('edit-champion-intro-portrait', 'championPortrait')">Save Champion Portrait</button>
+              </div>
+              <!-- .ns-form-row-right -->
+            </div>
+            <!-- .ns-form-row-->
+            
+          </div>
+          <!-- #edit-champion-section-left -->
+
+          <div id="edit-champion-section-right">
+  
+            <div class="ns-form-row ns-form-row-medium">
+              <div class="ns-form-row-left">
+                <label for="edit-champion-intro-name">Name:</label>
+              </div>
+              <!-- .ns-form-row-left -->
+              <div class="ns-form-row-right">
+                <input
+                  type="text"
+                  id="edit-champion-intro-name"
+                  ng-model="championForm.introduction.name"
+                  >
+              </div>
+              <!-- .ns-form-row-right -->
+            </div>
+            <!-- .ns-form-row.ns-form-row-medium -->
+
+            <div class="ns-form-row ns-form-row-medium">
+              <div class="ns-form-row-left">
+                <label for="edit-champion-intro-title">Title:</label>
+              </div>
+              <!-- .ns-form-row-left -->
+              <div class="ns-form-row-right">
+                <input
+                  type="text"
+                  id="edit-champion-intro-title"
+                  ng-model="championForm.introduction.title"
+                  >
+              </div>
+              <!-- .ns-form-row-right -->
+            </div>
+            <!-- .ns-form-row.ns-form-row-medium -->
+
+            <div class="ns-form-row ns-form-row">
+              <div class="ns-form-row-left">
+                <label for="edit-champion-intro-splash">Splash Art:</label>
+              </div>
+              <!-- .ns-form-row-left -->
+              <div class="ns-form-row-right">
+                <input
+                  style="width: 531px;"
+                  type="file"
+                  id="edit-champion-intro-splash"
+                  ng-model="championForm.introduction.splash"
+                  >
+                <button class="ns-button ns-button-line ns-button-green" ng-click="uploadImage('edit-champion-intro-splash', 'championSplash')">Save Splash Art</button>
+              </div>
+              <!-- .ns-form-row-right -->
+            </div>
+            <!-- .ns-form-row.ns-form-row -->
+
+
+
+            <div class="ns-form-row ns-form-row-short">
+              <div class="ns-form-row-left">
+                <label for="edit-champion-intro-primary-role">Primary Role:</label>
+              </div>
+              <!-- .ns-form-row-left -->
+              <div class="ns-form-row-right">
+                <select
+                  id="edit-champion-intro-primary-role"
+                  ng-model="championForm.introduction.primary_role"
+                  >
+                  <option value="" selected disabled>Select ...</option>
+                  <option value="assassin">Assassin</option>
+                  <option value="fighter">Fighter</option>
+                  <option value="mage">Mage</option>
+                  <option value="marksman">Marksman</option>
+                  <option value="support">Support</option>
+                  <option value="tank">Tank</option>
+                </select>
+              </div>
+              <!-- .ns-form-row-right -->
+            </div>
+            <!-- .ns-form-row.ns-form-row-short -->
+
+            <div class="ns-form-row ns-form-row-short">
+              <div class="ns-form-row-left">
+                <label for="edit-champion-intro-secondary-role">Secondary Role:</label>
+              </div>
+              <!-- .ns-form-row-left -->
+              <div class="ns-form-row-right">
+                <select
+                  id="edit-champion-intro-secondary-role"
+                  ng-model="championForm.introduction.secondary_role"
+                  >
+                  <option value="" selected disabled>Select ...</option>
+                  <option value="assassin">Assassin</option>
+                  <option value="fighter">Fighter</option>
+                  <option value="mage">Mage</option>
+                  <option value="marksman">Marksman</option>
+                  <option value="support">Support</option>
+                  <option value="tank">Tank</option>
+                  <option value="none">None</option>
+                </select>
+              </div>
+              <!-- .ns-form-row-right -->
+            </div>
+            <!-- .ns-form-row.ns-form-row-short -->
+
+            <div class="ns-form-row ns-form-row-short">
+              <div class="ns-form-row-left">
+                <label for="edit-champion-intro-rp-cost">RP Cost:</label>
+              </div>
+              <!-- .ns-form-row-left -->
+              <div class="ns-form-row-right">
+                <input
+                  type="number"
+                  step="any"
+                  id="edit-champion-intro-rp-cost"
+                  ng-model="championForm.introduction.rp_cost"
+                  >
+              </div>
+              <!-- .ns-form-row-right -->
+            </div>
+            <!-- .ns-form-row.ns-form-row-short -->
+
+            <div class="ns-form-row ns-form-row-short">
+              <div class="ns-form-row-left">
+                <label for="edit-champion-intro-ip-cost">IP Cost:</label>
+              </div>
+              <!-- .ns-form-row-left -->
+              <div class="ns-form-row-right">
+                <input
+                  type="number"
+                  step="any"
+                  id="edit-champion-intro-ip-cost"
+                  ng-model="championForm.introduction.ip_cost"
+                  >
+              </div>
+              <!-- .ns-form-row-right -->
+            </div>
+            <!-- .ns-form-row.ns-form-row-short -->
+
+            <div class="ns-form-row ns-form-row-short">
+              <div class="ns-form-row-left">
+                <label for="edit-champion-intro-attack">Attack:</label>
+              </div>
+              <!-- .ns-form-row-left -->
+              <div class="ns-form-row-right">
+                <select
+                  id="edit-champion-intro-attack"
+                  ng-model="championForm.introduction.attack"
+                  >
+                  <option value="" selected disabled>Select ...</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+              <!-- .ns-form-row-right -->
+            </div>
+            <!-- .ns-form-row.ns-form-row-short -->
+
+            <div class="ns-form-row ns-form-row-short">
+              <div class="ns-form-row-left">
+                <label for="edit-champion-intro-defense">Defense:</label>
+              </div>
+              <!-- .ns-form-row-left -->
+              <div class="ns-form-row-right">
+                <select
+                  id="edit-champion-intro-defense"
+                  ng-model="championForm.introduction.defense"
+                  >
+                  <option value="" selected disabled>Select ...</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+              <!-- .ns-form-row-right -->
+            </div>
+            <!-- .ns-form-row.ns-form-row-short -->
+
+            <div class="ns-form-row ns-form-row-short">
+              <div class="ns-form-row-left">
+                <label for="edit-champion-intro-ability">Ability:</label>
+              </div>
+              <!-- .ns-form-row-left -->
+              <div class="ns-form-row-right">
+                <select
+                  id="edit-champion-intro-ability"
+                  ng-model="championForm.introduction.ability"
+                  >
+                  <option value="" selected disabled>Select ...</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+              <!-- .ns-form-row-right -->
+            </div>
+            <!-- .ns-form-row.ns-form-row-short -->
+
+            <div class="ns-form-row ns-form-row-short">
+              <div class="ns-form-row-left">
+                <label for="edit-champion-intro-difficulty">Difficulty:</label>
+              </div>
+              <!-- .ns-form-row-left -->
+              <div class="ns-form-row-right">
+                <select
+                  id="edit-champion-intro-difficulty"
+                  ng-model="championForm.introduction.difficulty"
+                  >
+                  <option value="" selected disabled>Select ...</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+              <!-- .ns-form-row-right -->
+            </div>
+            <!-- .ns-form-row.ns-form-row-short -->
+            
+          </div>
+          <!-- #edit-champion-section-right -->
+
+        </div>
+        <!--  #edit-champion-section-intro.edit-champion-section -->
+
+
+
+        <div id="edit-champion-section-stats" class="edit-champion-section">
+
+          <div class="edit-champion-section-header">
+            Champion Stats:
+          </div>
+          <!-- .edit-champion-section-header -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-stats-health-1">Health:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <div class="edit-champion-number-series">
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-1">Lv. 1</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-1" ng-model="championForm.stats.health.level_1" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-2">Lv. 2</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-2" ng-model="championForm.stats.health.level_2" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-3">Lv. 3</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-3" ng-model="championForm.stats.health.level_3" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-4">Lv. 4</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-4" ng-model="championForm.stats.health.level_4" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-5">Lv. 5</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-5" ng-model="championForm.stats.health.level_5" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-6">Lv. 6</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-6" ng-model="championForm.stats.health.level_6" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-7">Lv. 7</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-7" ng-model="championForm.stats.health.level_7" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-8">Lv. 8</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-8" ng-model="championForm.stats.health.level_8" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-9">Lv. 9</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-9" ng-model="championForm.stats.health.level_9" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-10">Lv. 10</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-10" ng-model="championForm.stats.health.level_10" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-11">Lv. 11</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-11" ng-model="championForm.stats.health.level_11" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-12">Lv. 12</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-12" ng-model="championForm.stats.health.level_12" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-13">Lv. 13</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-13" ng-model="championForm.stats.health.level_13" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-14">Lv. 14</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-14" ng-model="championForm.stats.health.level_14" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-15">Lv. 15</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-15" ng-model="championForm.stats.health.level_15" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-16">Lv. 16</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-16" ng-model="championForm.stats.health.level_16" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-17">Lv. 17</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-17" ng-model="championForm.stats.health.level_17" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-18">Lv. 18</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-18" ng-model="championForm.stats.health.level_18" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+              </div>
+              <!-- .edit-champion-number-series -->
+              <button class="ns-button ns-button-line ns-button-small" ng-click="interpolateStats(championForm.stats.health.level_1, championForm.stats.health.level_18, 18, 'health')">Interpolate Lv. 2-17</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="roundStats('health')">Round To Nearest Whole</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="homogenizeStats('health')">Set All To Lv. 1 Value</button>
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-stats-health-regen-1">Health Regen:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <div class="edit-champion-number-series">
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-1">Lv. 1</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-1" ng-model="championForm.stats.health_regen.level_1" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-2">Lv. 2</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-2" ng-model="championForm.stats.health_regen.level_2" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-3">Lv. 3</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-3" ng-model="championForm.stats.health_regen.level_3" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-4">Lv. 4</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-4" ng-model="championForm.stats.health_regen.level_4" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-5">Lv. 5</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-5" ng-model="championForm.stats.health_regen.level_5" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-6">Lv. 6</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-6" ng-model="championForm.stats.health_regen.level_6" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-7">Lv. 7</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-7" ng-model="championForm.stats.health_regen.level_7" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-8">Lv. 8</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-8" ng-model="championForm.stats.health_regen.level_8" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-9">Lv. 9</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-9" ng-model="championForm.stats.health_regen.level_9" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-10">Lv. 10</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-10" ng-model="championForm.stats.health_regen.level_10" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-11">Lv. 11</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-11" ng-model="championForm.stats.health_regen.level_11" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-12">Lv. 12</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-12" ng-model="championForm.stats.health_regen.level_12" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-13">Lv. 13</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-13" ng-model="championForm.stats.health_regen.level_13" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-14">Lv. 14</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-14" ng-model="championForm.stats.health_regen.level_14" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-15">Lv. 15</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-15" ng-model="championForm.stats.health_regen.level_15" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-16">Lv. 16</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-16" ng-model="championForm.stats.health_regen.level_16" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-17">Lv. 17</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-17" ng-model="championForm.stats.health_regen.level_17" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-health-regen-18">Lv. 18</label>
+                  <input type="number" step="any" id="edit-champion-stats-health-regen-18" ng-model="championForm.stats.health_regen.level_18" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+              </div>
+              <!-- .edit-champion-number-series -->
+              <button class="ns-button ns-button-line ns-button-small" ng-click="interpolateStats(championForm.stats.health_regen.level_1, championForm.stats.health_regen.level_18, 18, 'health_regen')">Interpolate Lv. 2-17</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="roundStats('health_regen')">Round To Nearest Whole</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="homogenizeStats('health_regen')">Set All To Lv. 1 Value</button>
+
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-stats-resource-1">Resource (e.g. Mana, Fury):</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <div class="edit-champion-number-series edit-champion-number-series-large">
+                <div class="edit-champion-number-series-field edit-champion-number-series-field-large">
+                  <label for="edit-champion-stats-resource-1">Resource Type</label>
+                  <select
+                    id="edit-champion-stats-resource-type"
+                    ng-model="championForm.stats.resource.name"
+                    >
+                    <option value="" selected disabled>Select ...</option>
+                    <option value="mana">Mana</option>
+                    <option value="energy">Energy</option>
+                    <option value="health">Health</option>
+                    <option value="ferocity">Ferocity</option>
+                    <option value="fury">Fury</option>
+                    <option value="heat">Heat</option>
+                    <option value="rage">Rage</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <input
+                    ng-if="championForm.stats.resource.name === 'other'"
+                    ng-model="championForm.stats.resource.name_string"
+                    class="text-specification-input"
+                    type="text"
+                    placeholder="Please specify ..."
+                    />
+                </div>
+                <!-- .edit-champion-number-series-field.edit-champion-number-series-field-large -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-1">Lv. 1</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-1" ng-model="championForm.stats.resource.level_1" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-2">Lv. 2</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-2" ng-model="championForm.stats.resource.level_2" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-3">Lv. 3</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-3" ng-model="championForm.stats.resource.level_3" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-4">Lv. 4</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-4" ng-model="championForm.stats.resource.level_4" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-5">Lv. 5</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-5" ng-model="championForm.stats.resource.level_5" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-6">Lv. 6</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-6" ng-model="championForm.stats.resource.level_6" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-7">Lv. 7</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-7" ng-model="championForm.stats.resource.level_7" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-8">Lv. 8</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-8" ng-model="championForm.stats.resource.level_8" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-9">Lv. 9</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-9" ng-model="championForm.stats.resource.level_9" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-10">Lv. 10</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-10" ng-model="championForm.stats.resource.level_10" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-11">Lv. 11</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-11" ng-model="championForm.stats.resource.level_11" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-12">Lv. 12</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-12" ng-model="championForm.stats.resource.level_12" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-13">Lv. 13</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-13" ng-model="championForm.stats.resource.level_13" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-14">Lv. 14</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-14" ng-model="championForm.stats.resource.level_14" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-15">Lv. 15</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-15" ng-model="championForm.stats.resource.level_15" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-16">Lv. 16</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-16" ng-model="championForm.stats.resource.level_16" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-17">Lv. 17</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-17" ng-model="championForm.stats.resource.level_17" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-18">Lv. 18</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-18" ng-model="championForm.stats.resource.level_18" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+              </div>
+              <!-- .edit-champion-number-series -->
+              <button class="ns-button ns-button-line ns-button-small" ng-click="interpolateStats(championForm.stats.resource.level_1, championForm.stats.resource.level_18, 18, 'resource')">Interpolate Lv. 2-17</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="roundStats('resource')">Round To Nearest Whole</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="homogenizeStats('resource')">Set All To Lv. 1 Value</button>
+
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-stats-resource-regen-1">Resource Regen:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <div class="edit-champion-number-series">
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-1">Lv. 1</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-1" ng-model="championForm.stats.resource_regen.level_1" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-2">Lv. 2</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-2" ng-model="championForm.stats.resource_regen.level_2" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-3">Lv. 3</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-3" ng-model="championForm.stats.resource_regen.level_3" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-4">Lv. 4</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-4" ng-model="championForm.stats.resource_regen.level_4" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-5">Lv. 5</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-5" ng-model="championForm.stats.resource_regen.level_5" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-6">Lv. 6</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-6" ng-model="championForm.stats.resource_regen.level_6" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-7">Lv. 7</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-7" ng-model="championForm.stats.resource_regen.level_7" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-8">Lv. 8</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-8" ng-model="championForm.stats.resource_regen.level_8" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-9">Lv. 9</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-9" ng-model="championForm.stats.resource_regen.level_9" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-10">Lv. 10</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-10" ng-model="championForm.stats.resource_regen.level_10" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-11">Lv. 11</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-11" ng-model="championForm.stats.resource_regen.level_11" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-12">Lv. 12</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-12" ng-model="championForm.stats.resource_regen.level_12" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-13">Lv. 13</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-13" ng-model="championForm.stats.resource_regen.level_13" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-14">Lv. 14</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-14" ng-model="championForm.stats.resource_regen.level_14" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-15">Lv. 15</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-15" ng-model="championForm.stats.resource_regen.level_15" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-16">Lv. 16</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-16" ng-model="championForm.stats.resource_regen.level_16" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-17">Lv. 17</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-17" ng-model="championForm.stats.resource_regen.level_17" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-resource-regen-18">Lv. 18</label>
+                  <input type="number" step="any" id="edit-champion-stats-resource-regen-18" ng-model="championForm.stats.resource_regen.level_18" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+              </div>
+              <!-- .edit-champion-number-series -->
+              <button class="ns-button ns-button-line ns-button-small" ng-click="interpolateStats(championForm.stats.resource_regen.level_1, championForm.stats.resource_regen.level_18, 18, 'resource_regen')">Interpolate Lv. 2-17</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="roundStats('resource_regen')">Round To Nearest Whole</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="homogenizeStats('resource_regen')">Set All To Lv. 1 Value</button>
+
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-stats-attack-damage-1">Attack Damage:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <div class="edit-champion-number-series">
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-1">Lv. 1</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-1" ng-model="championForm.stats.attack_damage.level_1" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-2">Lv. 2</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-2" ng-model="championForm.stats.attack_damage.level_2" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-3">Lv. 3</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-3" ng-model="championForm.stats.attack_damage.level_3" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-4">Lv. 4</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-4" ng-model="championForm.stats.attack_damage.level_4" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-5">Lv. 5</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-5" ng-model="championForm.stats.attack_damage.level_5" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-6">Lv. 6</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-6" ng-model="championForm.stats.attack_damage.level_6" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-7">Lv. 7</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-7" ng-model="championForm.stats.attack_damage.level_7" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-8">Lv. 8</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-8" ng-model="championForm.stats.attack_damage.level_8" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-9">Lv. 9</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-9" ng-model="championForm.stats.attack_damage.level_9" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-10">Lv. 10</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-10" ng-model="championForm.stats.attack_damage.level_10" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-11">Lv. 11</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-11" ng-model="championForm.stats.attack_damage.level_11" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-12">Lv. 12</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-12" ng-model="championForm.stats.attack_damage.level_12" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-13">Lv. 13</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-13" ng-model="championForm.stats.attack_damage.level_13" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-14">Lv. 14</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-14" ng-model="championForm.stats.attack_damage.level_14" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-15">Lv. 15</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-15" ng-model="championForm.stats.attack_damage.level_15" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-16">Lv. 16</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-16" ng-model="championForm.stats.attack_damage.level_16" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-17">Lv. 17</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-17" ng-model="championForm.stats.attack_damage.level_17" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-damage-18">Lv. 18</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-damage-18" ng-model="championForm.stats.attack_damage.level_18" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+              </div>
+              <!-- .edit-champion-number-series -->
+              <button class="ns-button ns-button-line ns-button-small" ng-click="interpolateStats(championForm.stats.attack_damage.level_1, championForm.stats.attack_damage.level_18, 18, 'attack_damage')">Interpolate Lv. 2-17</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="roundStats('attack_damage')">Round To Nearest Whole</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="homogenizeStats('attack_damage')">Set All To Lv. 1 Value</button>
+
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-stats-attack-speed-1">Attack Speed (flat base value + % per level):</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <div class="edit-champion-number-series edit-champion-number-series-large">
+                <div class="edit-champion-number-series-field edit-champion-number-series-field-large">
+                  <label for="edit-champion-stats-attack-speed-base">Base</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-base" ng-model="championForm.stats.attack_speed.base" />
+                </div>
+                <!-- .edit-champion-number-series-field.edit-champion-number-series-field-large -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-1">Lv. 1</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-1" ng-model="championForm.stats.attack_speed.level_1" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-2">Lv. 2</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-2" ng-model="championForm.stats.attack_speed.level_2" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-3">Lv. 3</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-3" ng-model="championForm.stats.attack_speed.level_3" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-4">Lv. 4</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-4" ng-model="championForm.stats.attack_speed.level_4" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-5">Lv. 5</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-5" ng-model="championForm.stats.attack_speed.level_5" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-6">Lv. 6</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-6" ng-model="championForm.stats.attack_speed.level_6" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-7">Lv. 7</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-7" ng-model="championForm.stats.attack_speed.level_7" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-8">Lv. 8</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-8" ng-model="championForm.stats.attack_speed.level_8" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-9">Lv. 9</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-9" ng-model="championForm.stats.attack_speed.level_9" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-10">Lv. 10</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-10" ng-model="championForm.stats.attack_speed.level_10" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-11">Lv. 11</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-11" ng-model="championForm.stats.attack_speed.level_11" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-12">Lv. 12</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-12" ng-model="championForm.stats.attack_speed.level_12" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-13">Lv. 13</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-13" ng-model="championForm.stats.attack_speed.level_13" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-14">Lv. 14</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-14" ng-model="championForm.stats.attack_speed.level_14" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-15">Lv. 15</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-15" ng-model="championForm.stats.attack_speed.level_15" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-16">Lv. 16</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-16" ng-model="championForm.stats.attack_speed.level_16" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-17">Lv. 17</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-17" ng-model="championForm.stats.attack_speed.level_17" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-attack-speed-18">Lv. 18</label>
+                  <input type="number" step="any" id="edit-champion-stats-attack-speed-18" ng-model="championForm.stats.attack_speed.level_18" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+              </div>
+              <!-- .edit-champion-number-series -->
+              <button class="ns-button ns-button-line ns-button-small" ng-click="interpolateStats(championForm.stats.attack_speed.level_1, championForm.stats.attack_speed.level_18, 18, 'attack_speed')">Interpolate Lv. 2-17</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="roundStats('attack_speed')">Round To Nearest Whole</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="homogenizeStats('attack_speed')">Set All To Lv. 1 Value</button>
+
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-stats-armor-1">Armor:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <div class="edit-champion-number-series">
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-1">Lv. 1</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-1" ng-model="championForm.stats.armor.level_1" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-2">Lv. 2</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-2" ng-model="championForm.stats.armor.level_2" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-3">Lv. 3</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-3" ng-model="championForm.stats.armor.level_3" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-4">Lv. 4</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-4" ng-model="championForm.stats.armor.level_4" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-5">Lv. 5</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-5" ng-model="championForm.stats.armor.level_5" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-6">Lv. 6</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-6" ng-model="championForm.stats.armor.level_6" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-7">Lv. 7</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-7" ng-model="championForm.stats.armor.level_7" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-8">Lv. 8</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-8" ng-model="championForm.stats.armor.level_8" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-9">Lv. 9</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-9" ng-model="championForm.stats.armor.level_9" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-10">Lv. 10</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-10" ng-model="championForm.stats.armor.level_10" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-11">Lv. 11</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-11" ng-model="championForm.stats.armor.level_11" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-12">Lv. 12</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-12" ng-model="championForm.stats.armor.level_12" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-13">Lv. 13</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-13" ng-model="championForm.stats.armor.level_13" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-14">Lv. 14</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-14" ng-model="championForm.stats.armor.level_14" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-15">Lv. 15</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-15" ng-model="championForm.stats.armor.level_15" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-16">Lv. 16</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-16" ng-model="championForm.stats.armor.level_16" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-17">Lv. 17</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-17" ng-model="championForm.stats.armor.level_17" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-armor-18">Lv. 18</label>
+                  <input type="number" step="any" id="edit-champion-stats-armor-18" ng-model="championForm.stats.armor.level_18" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+              </div>
+              <!-- .edit-champion-number-series -->
+              <button class="ns-button ns-button-line ns-button-small" ng-click="interpolateStats(championForm.stats.armor.level_1, championForm.stats.armor.level_18, 18, 'armor')">Interpolate Lv. 2-17</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="roundStats('armor')">Round To Nearest Whole</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="homogenizeStats('armor')">Set All To Lv. 1 Value</button>
+
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-stats-magic-resist-1">Magic Resist:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <div class="edit-champion-number-series">
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-1">Lv. 1</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-1" ng-model="championForm.stats.magic_resist.level_1" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-2">Lv. 2</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-2" ng-model="championForm.stats.magic_resist.level_2" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-3">Lv. 3</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-3" ng-model="championForm.stats.magic_resist.level_3" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-4">Lv. 4</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-4" ng-model="championForm.stats.magic_resist.level_4" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-5">Lv. 5</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-5" ng-model="championForm.stats.magic_resist.level_5" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-6">Lv. 6</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-6" ng-model="championForm.stats.magic_resist.level_6" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-7">Lv. 7</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-7" ng-model="championForm.stats.magic_resist.level_7" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-8">Lv. 8</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-8" ng-model="championForm.stats.magic_resist.level_8" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-9">Lv. 9</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-9" ng-model="championForm.stats.magic_resist.level_9" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-10">Lv. 10</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-10" ng-model="championForm.stats.magic_resist.level_10" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-11">Lv. 11</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-11" ng-model="championForm.stats.magic_resist.level_11" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-12">Lv. 12</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-12" ng-model="championForm.stats.magic_resist.level_12" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-13">Lv. 13</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-13" ng-model="championForm.stats.magic_resist.level_13" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-14">Lv. 14</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-14" ng-model="championForm.stats.magic_resist.level_14" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-15">Lv. 15</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-15" ng-model="championForm.stats.magic_resist.level_15" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-16">Lv. 16</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-16" ng-model="championForm.stats.magic_resist.level_16" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-17">Lv. 17</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-17" ng-model="championForm.stats.magic_resist.level_17" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-magic-resist-18">Lv. 18</label>
+                  <input type="number" step="any" id="edit-champion-stats-magic-resist-18" ng-model="championForm.stats.magic_resist.level_18" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+              </div>
+              <!-- .edit-champion-number-series -->
+              <button class="ns-button ns-button-line ns-button-small" ng-click="interpolateStats(championForm.stats.magic_resist.level_1, championForm.stats.magic_resist.level_18, 18, 'magic_resist')">Interpolate Lv. 2-17</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="roundStats('magic_resist')">Round To Nearest Whole</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="homogenizeStats('magic_resist')">Set All To Lv. 1 Value</button>
+
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-stats-range-1">Range:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <div class="edit-champion-number-series">
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-1">Lv. 1</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-1" ng-model="championForm.stats.range.level_1" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-2">Lv. 2</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-2" ng-model="championForm.stats.range.level_2" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-3">Lv. 3</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-3" ng-model="championForm.stats.range.level_3" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-4">Lv. 4</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-4" ng-model="championForm.stats.range.level_4" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-5">Lv. 5</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-5" ng-model="championForm.stats.range.level_5" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-6">Lv. 6</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-6" ng-model="championForm.stats.range.level_6" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-7">Lv. 7</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-7" ng-model="championForm.stats.range.level_7" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-8">Lv. 8</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-8" ng-model="championForm.stats.range.level_8" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-9">Lv. 9</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-9" ng-model="championForm.stats.range.level_9" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-10">Lv. 10</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-10" ng-model="championForm.stats.range.level_10" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-11">Lv. 11</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-11" ng-model="championForm.stats.range.level_11" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-12">Lv. 12</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-12" ng-model="championForm.stats.range.level_12" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-13">Lv. 13</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-13" ng-model="championForm.stats.range.level_13" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-14">Lv. 14</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-14" ng-model="championForm.stats.range.level_14" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-15">Lv. 15</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-15" ng-model="championForm.stats.range.level_15" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-16">Lv. 16</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-16" ng-model="championForm.stats.range.level_16" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-17">Lv. 17</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-17" ng-model="championForm.stats.range.level_17" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-range-18">Lv. 18</label>
+                  <input type="number" step="any" id="edit-champion-stats-range-18" ng-model="championForm.stats.range.level_18" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+              </div>
+              <!-- .edit-champion-number-series -->
+              <button class="ns-button ns-button-line ns-button-small" ng-click="interpolateStats(championForm.stats.range.level_1, championForm.stats.range.level_18, 18, 'range')">Interpolate Lv. 2-17</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="roundStats('range')">Round To Nearest Whole</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="homogenizeStats('range')">Set All To Lv. 1 Value</button>
+
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-stats-movement-speed-1">Movement Speed:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <div class="edit-champion-number-series">
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-1">Lv. 1</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-1" ng-model="championForm.stats.movement_speed.level_1" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-2">Lv. 2</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-2" ng-model="championForm.stats.movement_speed.level_2" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-3">Lv. 3</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-3" ng-model="championForm.stats.movement_speed.level_3" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-4">Lv. 4</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-4" ng-model="championForm.stats.movement_speed.level_4" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-5">Lv. 5</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-5" ng-model="championForm.stats.movement_speed.level_5" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-6">Lv. 6</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-6" ng-model="championForm.stats.movement_speed.level_6" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-7">Lv. 7</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-7" ng-model="championForm.stats.movement_speed.level_7" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-8">Lv. 8</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-8" ng-model="championForm.stats.movement_speed.level_8" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-9">Lv. 9</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-9" ng-model="championForm.stats.movement_speed.level_9" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-10">Lv. 10</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-10" ng-model="championForm.stats.movement_speed.level_10" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-11">Lv. 11</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-11" ng-model="championForm.stats.movement_speed.level_11" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-12">Lv. 12</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-12" ng-model="championForm.stats.movement_speed.level_12" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-13">Lv. 13</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-13" ng-model="championForm.stats.movement_speed.level_13" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-14">Lv. 14</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-14" ng-model="championForm.stats.movement_speed.level_14" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-15">Lv. 15</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-15" ng-model="championForm.stats.movement_speed.level_15" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-16">Lv. 16</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-16" ng-model="championForm.stats.movement_speed.level_16" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-17">Lv. 17</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-17" ng-model="championForm.stats.movement_speed.level_17" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-stats-movement-speed-18">Lv. 18</label>
+                  <input type="number" step="any" id="edit-champion-stats-movement-speed-18" ng-model="championForm.stats.movement_speed.level_18" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+              </div>
+              <!-- .edit-champion-number-series -->
+              <button class="ns-button ns-button-line ns-button-small" ng-click="interpolateStats(championForm.stats.movement_speed.level_1, championForm.stats.movement_speed.level_18, 18, 'movement_speed')">Interpolate Lv. 2-17</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="roundStats('movement_speed')">Round To Nearest Whole</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="homogenizeStats('movement_speed')">Set All To Lv. 1 Value</button>
+
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+        </div>
+        <!--  #edit-champion-section-intro.edit-champion-section -->
+
+        <div class="edit-champion-section edit-champion-section-ability" ng-repeat="skill in championForm.skills track by $index">
+
+          <div class="edit-champion-section-header">
+            Champion Ability:
+          </div>
+          <!-- .edit-champion-section-header -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-skill-name">Name:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <input
+                type="text"
+                id="edit-champion-skill-name"
+                ng-model="skill.name"
+                >
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-skill-type">Type:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <select
+                id="edit-champion-skill-type"
+                ng-model="skill.type"
+                >
+                <option value="" selected disabled>Select ...</option>
+                <option value="passive">Passive</option>
+                <option value="hotkey_q">Hotkey: Q</option>
+                <option value="hotkey_w">Hotkey: W</option>
+                <option value="hotkey_e">Hotkey: E</option>
+                <option value="hotkey_r">Hotkey: R</option>
+              </select>
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-skill-levels">Levels:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <select
+                id="edit-champion-skill-levels"
+                ng-model="skill.levels"
+                >
+                <option value="" selected disabled>Select ...</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-skill-thumbnail">Thumbnail/Icon:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <img class="skill-icon-image" ng-src="{{skill.thumbnail}}" alt="Skill placeholder image." />
+              <input
+                type="file"
+                ng-attr-id="{{'edit-champion-skill-thumbnail-' + $index}}"
+                class="skill-icon-upload"
+                ng-model="skill.thumbnail"
+                >
+              <button class="skill-icon-save ns-button ns-button-line ns-button-green" ng-click="uploadImage(('edit-champion-skill-thumbnail-' + $index), 'skillIcon', $index)">Save Skill Icon</button>
+
+
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-skill-cost-1">Cost:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <div class="edit-champion-number-series edit-champion-number-series-flexible">
+                <div class="edit-champion-number-series-field edit-champion-number-series-field-large">
+                  <label for="edit-champion-skill-cost-type">Resource Type</label>
+                  <select
+                    id="edit-champion-skill-cost-type"
+                    ng-model="skill.cost.type"
+                    >
+                    <option value="" selected disabled>Select ...</option>
+                    <option value="mana">Mana</option>
+                    <option value="energy">Energy</option>
+                    <option value="health">Health</option>
+                    <option value="ferocity">Ferocity</option>
+                    <option value="fury">Fury</option>
+                    <option value="heat">Heat</option>
+                    <option value="rage">Rage</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <input
+                    ng-if="skill.cost.type === 'other'"
+                    ng-model="skill.cost.type_string"
+                    class="text-specification-input"
+                    type="text"
+                    placeholder="Please specify ..."
+                    />
+                </div>
+                <!-- .edit-champion-number-series-field.edit-champion-number-series-field-large -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-skill-cost-1">Lv. 1</label>
+                  <input type="number" step="any" id="edit-champion-skill-cost-1" ng-model="skill.cost.level_1" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 1">
+                  <label for="edit-champion-skill-cost-2">Lv. 2</label>
+                  <input type="number" step="any" id="edit-champion-skill-cost-2" ng-model="skill.cost.level_2" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 2">
+                  <label for="edit-champion-skill-cost-3">Lv. 3</label>
+                  <input type="number" step="any" id="edit-champion-skill-cost-3" ng-model="skill.cost.level_3" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 3">
+                  <label for="edit-champion-skill-cost-4">Lv. 4</label>
+                  <input type="number" step="any" id="edit-champion-skill-cost-4" ng-model="skill.cost.level_4" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 4">
+                  <label for="edit-champion-skill-cost-5">Lv. 5</label>
+                  <input type="number" step="any" id="edit-champion-skill-cost-5" ng-model="skill.cost.level_5" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 5">
+                  <label for="edit-champion-skill-cost-6">Lv. 6</label>
+                  <input type="number" step="any" id="edit-champion-skill-cost-6" ng-model="skill.cost.level_6" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+              </div>
+              <!-- .edit-champion-number-series.edit-champion-number-series-flexible -->
+              <button
+                ng-if="skill.levels > 2 && skill.levels"
+                class="ns-button ns-button-line ns-button-small"
+                ng-click="interpolateAbility(skill.cost.level_1, skill.cost['level_' + skill.levels], skill.levels, $index, 'cost')"
+                >Int.</button>
+              <button ng-click="roundAbility(skill.levels, $index, 'cost')" class="ns-button ns-button-line ns-button-small">Rnd.</button>
+              <button ng-click="homogenizeAbility(skill.levels, $index, 'cost')" ng-if="skill.levels > 1 && skill.levels" class="ns-button ns-button-line ns-button-small">Eq.</button>
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-skill-range-1">Range:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <div class="edit-champion-number-series edit-champion-number-series-flexible">
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-skill-range-1">Lv. 1</label>
+                  <input type="number" step="any" id="edit-champion-skill-range-1" ng-model="skill.range.level_1" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 1">
+                  <label for="edit-champion-skill-range-2">Lv. 2</label>
+                  <input type="number" step="any" id="edit-champion-skill-range-2" ng-model="skill.range.level_2" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 2">
+                  <label for="edit-champion-skill-range-3">Lv. 3</label>
+                  <input type="number" step="any" id="edit-champion-skill-range-3" ng-model="skill.range.level_3" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 3">
+                  <label for="edit-champion-skill-range-4">Lv. 4</label>
+                  <input type="number" step="any" id="edit-champion-skill-range-4" ng-model="skill.range.level_4" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 4">
+                  <label for="edit-champion-skill-range-5">Lv. 5</label>
+                  <input type="number" step="any" id="edit-champion-skill-range-5" ng-model="skill.range.level_5" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 5">
+                  <label for="edit-champion-skill-range-6">Lv. 6</label>
+                  <input type="number" step="any" id="edit-champion-skill-range-6" ng-model="skill.range.level_6" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+              </div>
+              <!-- .edit-champion-number-series.edit-champion-number-series-flexible -->
+              <button
+                ng-if="skill.levels > 2 && skill.levels"
+                class="ns-button ns-button-line ns-button-small"
+                ng-click="interpolateAbility(skill.range.level_1, skill.range['level_' + skill.levels], skill.levels, $index, 'range')"
+                >Int.</button>
+              <button ng-click="roundAbility(skill.levels, $index, 'range')" class="ns-button ns-button-line ns-button-small">Rnd.</button>
+              <button ng-click="homogenizeAbility(skill.levels, $index, 'range')" ng-if="skill.levels > 1 && skill.levels" class="ns-button ns-button-line ns-button-small">Eq.</button>
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+          <div class="ns-form-row ns-form-row-half">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-skill-cooldown-1">Cooldown:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <div class="edit-champion-number-series edit-champion-number-series-flexible">
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-skill-cooldown-1">Lv. 1</label>
+                  <input type="number" step="any" id="edit-champion-skill-cooldown-1" ng-model="skill.cooldown.level_1" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 1">
+                  <label for="edit-champion-skill-cooldown-2">Lv. 2</label>
+                  <input type="number" step="any" id="edit-champion-skill-cooldown-2" ng-model="skill.cooldown.level_2" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 2">
+                  <label for="edit-champion-skill-cooldown-3">Lv. 3</label>
+                  <input type="number" step="any" id="edit-champion-skill-cooldown-3" ng-model="skill.cooldown.level_3" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 3">
+                  <label for="edit-champion-skill-cooldown-4">Lv. 4</label>
+                  <input type="number" step="any" id="edit-champion-skill-cooldown-4" ng-model="skill.cooldown.level_4" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 4">
+                  <label for="edit-champion-skill-cooldown-5">Lv. 5</label>
+                  <input type="number" step="any" id="edit-champion-skill-cooldown-5" ng-model="skill.cooldown.level_5" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 5">
+                  <label for="edit-champion-skill-cooldown-6">Lv. 6</label>
+                  <input type="number" step="any" id="edit-champion-skill-cooldown-6" ng-model="skill.cooldown.level_6" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+              </div>
+              <!-- .edit-champion-number-series.edit-champion-number-series-flexible -->
+              <button
+                ng-if="skill.levels > 2 && skill.levels"
+                class="ns-button ns-button-line ns-button-small"
+                ng-click="interpolateAbility(skill.cooldown.level_1, skill.cooldown['level_' + skill.levels], skill.levels, $index, 'cooldown')"
+                >Int.</button>
+              <button ng-click="roundAbility(skill.levels, $index, 'cooldown')" class="ns-button ns-button-line ns-button-small">Rnd.</button>
+              <button ng-click="homogenizeAbility(skill.levels, $index, 'cooldown')" ng-if="skill.levels > 1 && skill.levels" class="ns-button ns-button-line ns-button-small">Eq.</button>
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-half -->
+
+          <div class="ns-form-row ns-form-row-medium">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-skill-description">Description:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <textarea
+                id="edit-champion-skill-description"
+                ng-model="skill.description"
+                ></textarea>
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-medium -->
+
+          <div class="ns-form-row" ng-repeat="scaling in skill.scalings track by $index">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-skill-cooldown-1">Level Scaling:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <div class="edit-champion-number-series edit-champion-number-series-flexible">
+                <div class="edit-champion-number-series-field edit-champion-number-series-field-large">
+                  <label for="edit-champion-skill-scaling-label">Scaling Label</label>
+                  <select
+                    id="edit-champion-skill-scaling-label"
+                    ng-model="scaling.label"
+                    >
+                    <option value="" selected disabled>Select ...</option>
+                    <option value="ability_power">Magic Damage</option>
+                    <option value="physical_damage">Physical Damage</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <input
+                    ng-if="scaling.label === 'other'"
+                    ng-model="scaling.label_string"
+                    class="text-specification-input"
+                    type="text"
+                    placeholder="Please specify ..."
+                    />
+                </div>
+                <!-- .edit-champion-number-series-field.edit-champion-number-series-field-large -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-skill-scaling-1">Lv. 1</label>
+                  <input type="number" step="any" id="edit-champion-skill-scaling-1" ng-model="scaling.level_1" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 1">
+                  <label for="edit-champion-skill-scaling-2">Lv. 2</label>
+                  <input type="number" step="any" id="edit-champion-skill-scaling-2" ng-model="scaling.level_2" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 2">
+                  <label for="edit-champion-skill-scaling-3">Lv. 3</label>
+                  <input type="number" step="any" id="edit-champion-skill-scaling-3" ng-model="scaling.level_3" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 3">
+                  <label for="edit-champion-skill-scaling-4">Lv. 4</label>
+                  <input type="number" step="any" id="edit-champion-skill-scaling-4" ng-model="scaling.level_4" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 4">
+                  <label for="edit-champion-skill-scaling-5">Lv. 5</label>
+                  <input type="number" step="any" id="edit-champion-skill-scaling-5" ng-model="scaling.level_5" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field" ng-if="skill.levels === null || skill.levels > 5">
+                  <label for="edit-champion-skill-scaling-6">Lv. 6</label>
+                  <input type="number" step="any" id="edit-champion-skill-scaling-6" ng-model="scaling.level_6" />
+                </div>
+                <!-- .edit-champion-number-series-field -->
+                <div class="edit-champion-number-series-field">
+                  <label for="edit-champion-skill-scaling-ratio">Ratio</label>
+                  <input type="number" step="any" id="edit-champion-skill-ratio" ng-model="scaling.ratio" />
+                </div>
+                <!-- .edit-champion-number-series-field.edit-champion-number-series-field-large -->
+                <div class="edit-champion-number-series-field edit-champion-number-series-field-large">
+                  <label for="edit-champion-skill-scaling-stat">Scaling Stat</label>
+                  <select
+                    id="edit-champion-skill-stat"
+                    ng-model="scaling.stat"
+                    >
+                    <option value="" selected disabled>Select ...</option>
+                    <option value="ability_power">Ability Power</option>
+                    <option value="attack_damage">Attack Damage</option>
+                    <option value="health">Health</option>
+                    <option value="armor">Armor</option>
+                    <option value="magic_resist">Magic Resist</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <input
+                    ng-if="scaling.stat === 'other'"
+                    ng-model="scaling.stat_string"
+                    class="text-specification-input"
+                    type="text"
+                    placeholder="Please specify ..."
+                    />
+                </div>
+                <!-- .edit-champion-number-series-field.edit-champion-number-series-field-large -->
+              </div>
+              <!-- .edit-champion-number-series.edit-champion-number-series-flexible -->
+              <button
+                ng-if="skill.levels > 2 && skill.levels"
+                class="ns-button ns-button-line ns-button-small"
+                ng-click="interpolateScaling(scaling.level_1, scaling['level_' + skill.levels], skill.levels, $parent.$parent.$index, $index)"
+                >Interpolate</button>
+              <button ng-click="roundScaling(skill.levels, $parent.$index, $index)" class="ns-button ns-button-line ns-button-small">Round</button>
+              <button ng-click="homogenizeScaling(skill.levels, $parent.$parent.$index, $index)" ng-if="skill.levels > 1 && skill.levels" class="ns-button ns-button-line ns-button-small">Equalize</button>
+              <button class="ns-button ns-button-line ns-button-line-red ns-button-small" ng-click="clearThisScaling($parent.$index, $index)">Clear This Scaling</button>
+              <button class="ns-button ns-button-line ns-button-small" ng-click="addAnotherScaling($parent.$index, $index)">Add Another Scaling</button>
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row -->
+
+          <div class="ns-form-row">
+            <button class="ns-button ns-button-line" ng-click="addAnotherSkill($index)">Add Another Ability</button>
+            <button class="ns-button ns-button-line-red ns-button-line" ng-click="clearThisSkill($index)">Clear This Ability</button>
+          </div>
+          <!-- .ns-form-row -->
+
+        </div>
+        <!-- .edit-champion-section.edit-champion-section-ability -->
+
+        <div class="edit-champion-section">
+
+          <div class="edit-champion-section-header">
+            Champion Profile:
+          </div>
+          <!-- .edit-champion-section-header -->
+
+          <div class="ns-form-row ns-form-row-medium">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-profile-biography">Biography:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <textarea
+                id="edit-champion-profile-biography"
+                ng-model="championForm.profile.biography"
+                ></textarea>
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-medium -->
+
+          <div class="ns-form-row ns-form-row-medium">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-profile-lore">Lore:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <textarea
+                id="edit-champion-profile-lore"
+                ng-model="championForm.profile.lore"
+                ></textarea>
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-medium -->
+
+          <div class="ns-form-row ns-form-row-medium">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-profile-strategy">Strategy:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <textarea
+                id="edit-champion-profile-strategy"
+                ng-model="championForm.profile.strategy"
+                ></textarea>
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-medium -->
+
+        </div>
+        <!-- .edit-champion-section -->
+
+        <div id="edit-champion-section-quotes" class="edit-champion-section">
+
+          <div class="edit-champion-section-header">
+            Champion Quotes:
+          </div>
+          <!-- .edit-champion-section-header -->
+
+          <div class="ns-form-row ns-form-row-medium">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-quotes-upon-selection">Upon Selection:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right">
+              <input
+                type="text"
+                id="edit-champion-quotes-upon-selection"
+                ng-model="championForm.quotes.upon_selection"
+                >
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-medium -->
+
+          <div class="ns-form-row">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-quotes-attacking">Attacking:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right" ng-repeat="attacking_quote in championForm.quotes.attacking track by $index">
+              <input
+                type="text"
+                ng-attr-id="{{'edit-champion-quotes-attacking-' + $index}}"
+                ng-model="attacking_quote.string"
+                >
+              <button class="ns-button ns-button-line" ng-click="addAnotherQuote('attacking')">Add Another Quote</button>
+              <button class="ns-button ns-button-line ns-button-line-red" ng-click="clearThisQuote('attacking', $index)">Clear This Quote</button>
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-medium -->
+
+          <div class="ns-form-row">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-quotes-movement">Movement:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right" ng-repeat="movement_quote in championForm.quotes.movement track by $index">
+              <input
+                type="text"
+                ng-attr-id="{{'edit-champion-quotes-movement-' + $index}}"
+                ng-model="movement_quote.string"
+                >
+              <button class="ns-button ns-button-line" ng-click="addAnotherQuote('movement')">Add Another Quote</button>
+              <button class="ns-button ns-button-line ns-button-line-red" ng-click="clearThisQuote('movement', $index)">Clear This Quote</button>
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-medium -->
+
+          <div class="ns-form-row">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-quotes-taunt">Taunt:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right" ng-repeat="taunt_quote in championForm.quotes.taunt track by $index">
+              <input
+                type="text"
+                ng-attr-id="{{'edit-champion-quotes-taunt-' + $index}}"
+                ng-model="taunt_quote.string"
+                >
+              <button class="ns-button ns-button-line" ng-click="addAnotherQuote('taunt')">Add Another Quote</button>
+              <button class="ns-button ns-button-line ns-button-line-red" ng-click="clearThisQuote('taunt', $index)">Clear This Quote</button>
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-medium -->
+
+          <div class="ns-form-row">
+            <div class="ns-form-row-left">
+              <label for="edit-champion-quotes-joke">Joke:</label>
+            </div>
+            <!-- .ns-form-row-left -->
+            <div class="ns-form-row-right" ng-repeat="joke_quote in championForm.quotes.joke track by $index">
+              <input
+                type="text"
+                ng-attr-id="{{'edit-champion-quotes-joke-' + $index}}"
+                ng-model="joke_quote.string"
+                >
+              <button class="ns-button ns-button-line" ng-click="addAnotherQuote('joke')">Add Another Quote</button>
+              <button class="ns-button ns-button-line ns-button-line-red" ng-click="clearThisQuote('joke', $index)">Clear This Quote</button>
+            </div>
+            <!-- .ns-form-row-right -->
+          </div>
+          <!-- .ns-form-row.ns-form-row-medium -->
+
+        </div>
+        <!-- .edit-champion-section -->
+
+        <div class="ns-form-row">
+          <button class="ns-button ns-button-line" type="submit" ng-click="saveChampion();">Save Champion</button>
+          <button class="ns-button ns-button-line ns-button-line-red" ng-click="startOverWithBlankChampionTemplate();">Clear Champion</button>
+          <!-- <button ng-click="printChampionTemplate();">printChampionTemplate</button> -->
+        </div>
+        <!-- .ns-form-row -->
+
+      </form>
+      <!-- form.ns-form-basic -->
+
+    </div>
+    <!-- .ns-section-wrapper -->
+  </section>
+  <!-- section.ns-section-main -->
+

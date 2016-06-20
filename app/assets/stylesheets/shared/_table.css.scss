@@ -1,0 +1,258 @@
+// **************************************************
+// Table SCSS
+// **************************************************
+
+
+// Table Variables
+// **************************************************
+
+$color-table-header: #fbfbfb;
+$color-table-header-background: #f2f2f2;
+$color-table-header-background-hover: #2adabf;
+$color-table-header-background-selected: #2adabf;
+$color-table-row-background: transparent;
+$color-table-row-background-zebra: #fbfbfb;
+$color-table-row-background-hover: #f5efc1;
+$color-table-row-background-selected: #2adabf;
+
+
+// Table Utilities Row
+// **************************************************
+
+// Styles for a row above a table that has some utilities in it.
+// The left side of the row allows for a table filtering input and results summary.
+// The right side of the row allows for a table to have various associated actions (as buttons).
+
+.ns-table-utilities {
+  display: inline-block;
+  float: left;
+  width: 100%;
+  margin: 0 0 6px 0;
+  .ns-table-utilities-left,
+  .ns-table-utilities-right {
+    display: inline-block;
+    float: left;
+    @include screen-format(tablet) {
+      width: 100%;
+    }
+    > input[type="date"],
+    > input[type="datetime"],
+    > input[type="datetime-local"],
+    > input[type="email"],
+    > input[type="month"],
+    > input[type="number"],
+    > input[type="password"],
+    > input[type="search"],
+    > input[type="tel"],
+    > input[type="text"],
+    > input[type="time"],
+    > input[type="url"],
+    > input[type="week"],
+    > select,
+    > textarea {
+      float: left;
+      width: 225px;
+      margin: 0 10px 10px 0;
+      @include screen-format(nano) {
+        width: 100%;
+      }
+    }
+    > .ns-button,
+    > input[type="submit"],
+    > input[type="button"],
+    > input[type="reset"],
+    > button {
+      float: left;
+      margin: 0 5px 10px 0;
+      @include screen-format(tablet) {
+        width: 100%;
+        margin: 0 0 10px 0;
+      }
+      @include screen-format(phone) {
+        width: 100%;
+        margin: 0 0 10px 0;
+      }
+      @include screen-format(nano) {
+        width: 100%;
+        margin: 0 0 10px 0;
+      }
+    }
+  }
+  .ns-table-utilities-right {
+    float: right;
+    @include screen-format(tablet) {
+      width: 100%;
+    }
+    @include screen-format(phone) {
+      width: 100%;
+    }
+    @include screen-format(nano) {
+      width: 100%;
+    }
+    > input[type="date"],
+    > input[type="datetime"],
+    > input[type="datetime-local"],
+    > input[type="email"],
+    > input[type="month"],
+    > input[type="number"],
+    > input[type="password"],
+    > input[type="search"],
+    > input[type="tel"],
+    > input[type="text"],
+    > input[type="time"],
+    > input[type="url"],
+    > input[type="week"],
+    > select,
+    > textarea {
+      float: right;
+      margin: 0 0 10px 5px;
+      @media (max-width: 1400px) {
+        float: right;
+        margin: 0 0 10px 10px;
+      }
+      @include screen-format(tablet) {
+        float: left;
+        margin: 0 10px 10px 0;
+      }
+      @include screen-format(phone) {
+        width: 100%;
+        margin: 0 0 10px 0;
+      }
+      @include screen-format(nano) {
+        width: 100%;
+        margin: 0 0 10px 0;
+      }
+    }
+    > .ns-button,
+    > input[type="submit"],
+    > input[type="button"],
+    > input[type="reset"],
+    > button {
+      float: left;
+      margin: 0 0 10px 5px;
+      @include screen-format(tablet) {
+        width: 100%;
+        margin: 0 0 10px 0;
+      }
+      @include screen-format(phone) {
+        width: 100%;
+        margin: 0 0 10px 0;
+      }
+      @include screen-format(nano) {
+        width: 100%;
+        margin: 0 0 10px 0;
+      }
+    }
+  }
+}
+
+
+// Table Wrapper
+// **************************************************
+
+// Tables display poorly in responsive views.
+// We want the user to be able to scroll in wide tables to see table content.
+// This wrapper style allows us to do it.
+// The table overflows the wrapper, and the wrapper scrolls left and right to show the table.
+
+.ns-table-wrapper {
+  display: inline-block;
+  float: left;
+  width: 100%;
+  overflow-x: scroll;
+  min-height: 150px;
+}
+
+
+// Main Table SCSS
+// **************************************************
+
+table.ns-table {
+  width: 100%;
+  margin: 0 0 40px 0;
+  background: $color-page-background;
+  .ns-button,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  button {
+    white-space: nowrap;
+  }
+  > colgroup {
+    > col {}
+  }
+  > thead {
+    > tr {
+      > th {
+        padding: 5px 10px 5px 10px;
+        font-family: $font-secondary;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 20px;
+        text-transform: uppercase;
+        background: $color-table-header-background;
+      }
+      > th.ns-sortable-column {                               // Utility class to format a sortable row.
+        cursor: pointer;
+        white-space: nowrap;
+        i.ss-icon {                                           // Style sort icons. This presumes we are using Symbolset.
+          display: inline-block;
+          height: 8px;
+          font-size: 8px;
+        }
+      }
+      > th.ns-sortable-column.ns-sortable-column-current {    // Utility class to format a sortable row that is actively sorting.
+        background: $color-table-header-background-selected;
+      }
+      > th.ns-sortable-column:hover {                         // Utility class to format a sortable row that is hovered-over.
+        background: $color-table-header-background-hover;
+      }
+      > th.ns-column-align-right {                            // Utility class to format a row that has tablular data (right aligned).
+        text-align: right;
+      }
+    }
+  }
+  > tbody {
+    > tr {
+      > td {
+        padding: 7px 10px 8px 10px;
+        background: $color-page-background;
+      }
+      > td.ns-column-align-right {      // Utility class to format a row that has tablular data (right aligned).
+        text-align: right;
+      }
+    }
+    > tr:nth-child(even) {              // Add zebra stripes to table.
+      > td {
+        background: $color-table-row-background-zebra;
+      }
+    }
+    > tr.ns-row-current {               // Utility class to highlight a selected row.
+      > td {
+        background: $color-table-row-background-selected;
+      }
+    }
+    > tr:hover {                        // Utility class to highlight a hovered-over row.
+      > td {
+        background: $color-table-row-background-hover;
+      }
+    }
+  }
+  > tbody.ns-table-no-results {         // Utility class to style table when it is empty.
+    display: block;
+    height: 112px;
+  }
+  > tbody.ns-table-no-results:after {   // Utility class to return "No results." when it is empty.
+    display: block;
+    padding: 20px 0 20px 15px;
+    font-style: italic;
+    content: "No results."
+  }
+}
+
+
+
+
+
+
+

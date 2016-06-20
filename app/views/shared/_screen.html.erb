@@ -1,0 +1,8 @@
+  <div
+    id="ns-screen-background"
+    ng-if="nsStateMachine.modal.isVisible || nsStateMachine.warningPopup.isVisible"
+    ng-click="nsStateMachine.modal.close()"
+    ng-class="{ 'ns-screen-background-visible' : nsStateMachine.modal.isVisible || nsStateMachine.warningPopup.isVisible }"
+    >
+  </div>
+  <!-- #ns-warning-background -->

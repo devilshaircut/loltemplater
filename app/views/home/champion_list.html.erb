@@ -1,0 +1,187 @@
+
+
+  <section class="ns-section-main">
+    <div class="ns-section-wrapper">
+
+      <div id="edit-champion-header">
+        <h1 class="ns-header-basic">My Champions</h1>
+      </div>
+      <!-- #edit-champion-header -->
+
+      <div class="ns-table-utilities">
+        <div class="ns-table-utilities-left">
+          <input ng-model="championSearch" type="text" placeholder="Search champions by keyword ..." />
+          <label>
+            <em><ng-pluralize count="filteredChampions.length" when="{'0': 'No result found out', 'one': 'Showing 1 result out', 'other': 'Showing {} results out'}"></ng-pluralize> of {{champions.length}} in total.</em>
+          </label><!-- .ns-form-label-inline -->
+        </div>
+        <!-- .ns-table-utilities-left -->
+        <div class="ns-table-utilities-right">
+          <a href="/edit_champion" class="ns-button ns-button-line">Create a Champion</a><!-- button.ns-button -->
+        </div>
+        <!-- .ns-table-utilities-right -->
+      </div>
+      <!-- .ns-table-utilities -->
+
+      <div class="ns-table-wrapper">
+        <table class="ns-table">
+          <colgroup>
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+          </colgroup>
+          <thead>
+            <tr>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('champions', 'name', 'introduction.');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['champions']['currentColumn'] == 'introduction.name' }"
+                >
+                Champion <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('champions', 'introduction.name');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('champions', 'introduction.name');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('champions', 'primary_role', 'introduction.');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['champions']['currentColumn'] == 'introduction.primary_role' }"
+                >
+                Primary <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('champions', 'introduction.primary_role');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('champions', 'introduction.primary_role');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('champions', 'secondary_role', 'introduction.');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['champions']['currentColumn'] == 'introduction.secondary_role' }"
+                >
+                Secondary Role <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('champions', 'introduction.secondary_role');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('champions', 'introduction.secondary_role');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('champions', 'rp_cost', 'introduction.');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['champions']['currentColumn'] == 'introduction.rp_cost' }"
+                >
+                RP Cost <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('champions', 'introduction.rp_cost');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('champions', 'introduction.rp_cost');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('champions', 'ip_cost', 'introduction.');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['champions']['currentColumn'] == 'introduction.ip_cost' }"
+                >
+                IP Cost <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('champions', 'introduction.ip_cost');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('champions', 'introduction.ip_cost');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th
+                class="ns-sortable-column"
+                ng-click="nsStateMachine.dataTable.methods.setActiveColumn('champions', 'timestamp', '');"
+                ng-class="{ 'ns-sortable-column-current' : nsStateMachine.dataTable.state['champions']['currentColumn'] == 'timestamp' }"
+                >
+                Last Modified <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsAscending('champions', 'timestamp');"
+                  class="ss-icon"
+                  >
+                  down
+                </i>
+                <i
+                  ng-if="nsStateMachine.dataTable.methods.columnIsDescending('champions', 'timestamp');"
+                  class="ss-icon"
+                  >
+                  up
+                </i>
+              </th>
+              <th class="ns-column-align-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- | orderBy: nsStateMachine.dataTable.state['champions']['currentColumn']:nsStateMachine.dataTable.state['champions']['reverseState'])" -->
+            <tr
+              ng-repeat="champion in filteredChampions = (champions
+                | filter: championSearch
+                | orderBy: nsStateMachine.dataTable.state['champions']['currentColumn']:nsStateMachine.dataTable.state['champions']['reverseState'])"
+              >
+              <td>{{champion.introduction.name}}</td>
+              <td>{{champion.introduction.primary_role}}</td>
+              <td>{{champion.introduction.secondary_role}}</td>
+              <td>{{champion.introduction.rp_cost}}</td>
+              <td>{{champion.introduction.ip_cost}}</td>
+              <td>{{champion.timestamp | date:'M/d/yy h:mm a'}}</td>
+              <td class="ns-column-align-right">
+                <a
+                  class="ns-button ns-button-line ns-button-line-green ns-button-small"
+                  ng-href="/edit_champion/{{$index}}"
+                  >Edit Champion
+                </a>
+                <button
+                  class="ns-button ns-button-line ns-button-line-red ns-button-small"
+                  ng-click="nsStateMachine.dataTable.methods.deleteItem('champions', $index, deleteComponentAction)"
+                  >
+                  Delete
+                </button><!-- button.ns-button -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- .ns-table -->
+      </div>
+      <!-- .ns-table-wrapper -->
+
+    </div>
+    <!-- .ns-section-wrapper -->
+  </section>
+  <!-- section.ns-section-main -->
+

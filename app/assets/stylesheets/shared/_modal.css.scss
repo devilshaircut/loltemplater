@@ -1,0 +1,103 @@
+// **************************************************
+// Begin: "MODAL PLUGIN"
+// **************************************************
+
+// Example Modal Content:
+//
+// <div
+//  id="YOUR_MODAL_ID_HERE"
+//  class="ns-modal"
+//  ng-if="nsStateMachine.modal.isVisible && nsStateMachine.modal.currentModal === 'YOUR_MODAL_ID_HERE'"
+//  >
+//   <span class="ns-modal-close" ng-click="nsStateMachine.modal.close()">&times;</span><!-- .ns-modal-close -->
+//   <!-- CONTENT GOES HERE -->
+//   <button ng-click="nsStateMachine.modal.close()">Close Modal</button>
+// </div>
+// <!-- .ns-modal -->
+
+.ns-modal {
+  display: none;
+  visibility: hidden;
+  width: 700px;
+  min-height: 200px;
+  background: #ffffff;
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  z-index: 800;
+  @include translateX(-50%);
+  @include border-radius(4px);
+  @include box-shadow(0 1px 7px #000000);
+  @include screen-format(laptop) {
+    width: 700px;
+  }
+  @include screen-format(tablet) {
+    width: 70%;
+  }
+  @include screen-format(phone) {
+    width: 80%;
+  }
+  @include screen-format(nano) {
+    width: 90%;
+  }
+  .ns-modal-close {
+    display: inline-block;
+    float: right;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffffff;
+    background: #000000;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    cursor: pointer;
+    @include border-radius(16px);
+    @include box-shadow(0 1px 4px #000000);
+  }
+}
+.ns-modal.ns-modal-visible {
+  display: block;
+  visibility: visible;
+}
+
+
+// Modal's Animation Classes (For Angular)
+// **************************************************
+
+.ns-modal.ng-enter,
+.ns-modal.ng-leave {
+  @include transition-delay(0);
+  @include transition-timing-function(cubic-bezier(0.250, 0.460, 0.450, 0.940));
+  @include transition-property(all);
+  @include transition-duration(0.5s);
+}
+
+.ns-modal.ng-enter,
+.ns-modal.ng-leave.ng-leave-active {
+  @include opacity(0);
+  @include transition-delay(0);
+}
+
+.ns-modal.ng-leave,
+.ns-modal.ng-enter.ng-enter-active {
+  @include opacity(1);
+  @include transition-delay(0.25s);
+}
+
+
+// **************************************************
+// End: "MODAL PLUGIN"
+// **************************************************
+
+
+
+
+
+
+
+

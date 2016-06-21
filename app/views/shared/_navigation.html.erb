@@ -10,6 +10,7 @@
         <li><a ng-click="nsStateMachine.navDrawer.hide()" href="/create_champion" class="<%= 'ns-navigation-current' if action_name == 'create_champion' || action_name == 'edit_champion' %>">Create Champion</a></li>
         <li><a ng-click="nsStateMachine.navDrawer.hide()" href="/roadmap" class="<%= 'ns-navigation-current' if action_name == 'roadmap' %>">Roadmap</a></li>
         <li><a ng-click="nsStateMachine.navDrawer.hide()" href="https://twitter.com/loltemplater">@loltemplater</a></li>
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
       </ol>
       <!-- #ns-navigation -->
     </div>

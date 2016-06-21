@@ -5,6 +5,12 @@
         <h1 class="ns-header-basic">Edit Champion</h1>
         <button class="ns-button ns-button-line ns-button-line-red" ng-click="startOverWithBlankChampionTemplate();">Clear Champion</button>
         <button class="ns-button ns-button-line" type="submit" ng-click="saveChampion();">Save Champion</button>
+        <input
+          type="text"
+          id="edit-champion-author"
+          ng-model="championForm.author"
+          placeholder="Provide author name ..."
+          >
       </div>
       <!-- #edit-champion-header -->
 

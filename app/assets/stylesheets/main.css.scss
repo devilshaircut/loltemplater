@@ -567,11 +567,19 @@ button.ns-button.ns-button-line.ns-button-line-red {
     float: left;
     margin-bottom: 10px;
   }
+  input[type="text"] {
+    display: block;
+    float: right;
+    margin: 15px 0 0 0;
+    height: 40px;
+    font-size: 14px;
+  }
   .ns-button.ns-button-line,
   input[type="submit"].ns-button.ns-button-line,
   input[type="button"].ns-button.ns-button-line,
   input[type="reset"].ns-button.ns-button-line,
   button.ns-button.ns-button-line {
+    display: block;
     float: right;
     margin: 15px 0 0 5px;
   }

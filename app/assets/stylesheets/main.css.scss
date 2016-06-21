@@ -517,21 +517,35 @@ nav.ns-section-main {
 
 
 nav.ns-section-main {
-  border-bottom: 1px solid #f2f2f2;
-  ol#ns-navigation {
-    > li {
-      > a {
-        font-size: 14px;
-        text-transform: uppercase;
-        font-weight: 400;
-        letter-spacing: 1px;
+  border-bottom: 2px solid #f2f2f2;
+  .ns-section-wrapper {
+    overflow: visible;
+    ol#ns-navigation {
+      > li {
+        > a {
+          font-size: 14px;
+          text-transform: uppercase;
+          font-weight: 400;
+          letter-spacing: 1px;
+        }
+        > a.ns-navigation-current {
+          border-bottom: 2px solid #a5a5a5;
+          @include screen-format(phone) {
+            color: #2adabf;
+            border: none;
+          }
+          @include screen-format(nano) {
+            color: #2adabf;
+            border: none;
+          }
+        }
       }
     }
   }
 }
 
 #ns-slide-controls.ns-section-main {
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 2px solid #f2f2f2;
 }
 
 input[type="submit"].ns-button.ns-button-line.ns-button-line-red,

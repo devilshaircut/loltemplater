@@ -1,7 +1,7 @@
 AngularApp.controller("editChampionController", ["$rootScope", "$scope", "httpService", "$http", function($rootScope, $scope, httpService, $http) {
 
   // BEGIN: Data storage and retrieval. --------------------------------------------------------------
-  console.log(localStorage);
+  // console.log(localStorage);
   var createLocalStorageIfEmpty = function() {
     if (!localStorage.getItem("lolchampions")) {
       var lolchampions = {
@@ -11,7 +11,7 @@ AngularApp.controller("editChampionController", ["$rootScope", "$scope", "httpSe
     }
   };
   createLocalStorageIfEmpty();
-  console.log(localStorage);
+  // console.log(localStorage);
   // END: Data storage and retrieval. ----------------------------------------------------------------
 
 
@@ -370,14 +370,12 @@ AngularApp.controller("editChampionController", ["$rootScope", "$scope", "httpSe
     parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)) > -1 &&
     parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)) <= JSON.parse(localStorage.getItem("lolchampions")).champions.length - 1
   ) {
-    console.log("yes");
     var championId = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
     $scope.championForm = JSON.parse(localStorage.getItem("lolchampions")).champions[championId];
   }
   // else if () {
   // }
   else {
-    console.log("no");
     // Build the form and add the repeating elements.
     $scope.startOverWithBlankChampionTemplate();
   }
@@ -414,7 +412,7 @@ AngularApp.controller("editChampionController", ["$rootScope", "$scope", "httpSe
           "image": data
         }
       };
-      console.log(configurationObject);
+      // console.log(configurationObject);
       $http(configurationObject).then(successCallback, errorCallback);
     };
     reader.readAsBinaryString(splashImage);

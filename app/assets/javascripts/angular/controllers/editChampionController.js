@@ -241,7 +241,7 @@ AngularApp.controller("editChampionController", ["$rootScope", "$scope", "httpSe
   var returnChampionTemplate = function() {
     var championTemplate = {
       "author":            null,
-      "fbSession":         null,
+      "key":               null,
       "timestamp":         null,
       "introduction": {
         "name":            null,
@@ -422,12 +422,42 @@ AngularApp.controller("editChampionController", ["$rootScope", "$scope", "httpSe
 
   $scope.publishChampion = function() {
 
+    var successCallback = function(payload, status) {
+      // $scope.championForm.key = payload.data.data.championKey;
+    };
+    var errorCallback = function(payload, status) { console.log("error"); };
+
+    var fbSessionID = null;
+    if ($rootScope.fbSession) {
+      fbSessionID = $rootScope.fbSession;
+    }
+
+    var configurationObject = {
+      "method":       "POST",
+      "url":          "/save_champion",
+      "data":         {
+        "champion":   angular.toJson($scope.championForm),
+        "fbSession":  fbSessionID
+      }
+    };
+
+    $http(configurationObject).then(successCallback, errorCallback);
+
+  };
+
+  $scope.getChampion = function() {
+
     var successCallback = function(payload, status) { console.log("success"); };
     var errorCallback = function(payload, status) { console.log("error"); };
+
     var configurationObject = {
-      "method": "POST",
-      "url": "/save_champion"
+      "method":     "POST",
+      "url":        "/get_champion",
+      "data":       {
+        "id":       1
+      }
     };
+
     $http(configurationObject).then(successCallback, errorCallback);
 
   };

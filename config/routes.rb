@@ -12,9 +12,11 @@ Loltemplater::Application.routes.draw do
   get   '/view_champion/:id'     => 'home#view_champion'
   get   '/create_champion'       => 'home#create_champion'
   get   '/champion_list'         => 'home#champion_list'
+  get   '/published_champions'   => 'home#published_champions'
   get   '/roadmap'               => 'home#roadmap'
 
   post  '/save_champion'         => 'home#save_champion'
+  post  '/get_champion'          => 'home#get_champion'
 
   # resources :champion do
   #   post "/save_champion"      => "home#save_champion"

@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20160621063709) do
 
   create_table "champions", force: :cascade do |t|
     t.json     "championjson"
-    t.integer  "fbsession"
+    t.string   "fbsession"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
-  skip_before_action :verify_authenticity_token, only: [:save_champion]
+  skip_before_action :verify_authenticity_token, only: [:save_champion, :get_champion]
 
   def index
     @angularController = 'baseController'
@@ -42,9 +42,50 @@ class HomeController < ApplicationController
     @angularController = 'editChampionController'
   end
 
-  def save_champion
+  def published_champions
     @angularController = 'editChampionController'
-    render json: "{ \"data\": { \"id\": \"test\" }, \"success\": true, \"status\": 200 }"
+  end
+
+  def save_champion
+    if params[:fbSession]
+      id = params[:fbSession][:id]
+      json = params[:champion].to_json()
+      # Rails.logger.debug(params.to_json())
+      # Rails.logger.debug("-----")
+      # Rails.logger.debug(id)
+      Rails.logger.debug(json)
+      # Rails.logger.debug("-----")
+      champion = Champion.create(fbsession: id, championjson: json)
+
+      saveResponse = {
+        data: { championKey: champion.id },
+        success: true,
+        status: 200
+      }
+      render json: saveResponse
+    else
+      saveResponse = {
+        data: { message: "You must be logged into Facebook to publish your champion." },
+        success: false,
+        status: 400
+      }
+      render json: saveResponse
+    end
+  end
+
+  def get_champion
+    Rails.logger.debug(params[:id])
+
+    championResponse = {
+      data: Champion.find(params[:id])[:championjson],
+      success: true,
+      status: 200
+    }
+    championResponse = championResponse.to_json()
+
+    # render json: 
+    render json: championResponse
+
   end
 
   def champion_list

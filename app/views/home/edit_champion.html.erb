@@ -14,7 +14,7 @@
         ng-class="{ 'ns-form-submit-attempted' : nsStateMachine.forms.states.edit_champion.submit_attempted === true }"
         >
 
-        <div id="edit-champion-section-intro" class="edit-champion-section" ng-style="{ 'background-color': '#bbbbbb', 'background-image': 'url(' + championForm.introduction.splash + ')' }">
+        <div id="edit-champion-section-intro" class="edit-champion-section" ng-style="championForm.introduction.splash ? { 'background-image': 'url(' + championForm.introduction.splash + ')' } : {}">
 
           <div id="edit-champion-section-left">
 

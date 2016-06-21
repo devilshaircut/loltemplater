@@ -157,21 +157,21 @@
               <td class="ns-column-align-right">
                 <a
                   class="ns-button ns-button-line ns-button-line-green ns-button-small"
-                  ng-href="/edit_champion/{{$index}}"
+                  ng-href="/edit_published_champion/{{champion.id}}"
                   ng-if="champion.owned === true"
                   >Edit
                 </a>
-<!--                 <a
+                <a
                   class="ns-button ns-button-line ns-button-line-green ns-button-small"
                   ng-href="/view_champion/{{$index}}"
                   >View
                 </a>
                 <button
                   class="ns-button ns-button-line ns-button-line-red ns-button-small"
-                  ng-click="nsStateMachine.dataTable.methods.deleteItem('champions', $index, deleteComponentAction)"
+                  ng-if="champion.owned === true"
                   >
                   Delete
-                </button> -->
+                </button>
               </td>
             </tr>
           </tbody>

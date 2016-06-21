@@ -46,6 +46,10 @@ class HomeController < ApplicationController
     @angularController = 'publishedChampionsController'
   end
 
+  def edit_published_champion
+    @angularController = 'editChampionController'
+  end
+
   def save_champion
     if params[:fbSession]
       id = params[:fbSession][:id]
@@ -81,6 +85,13 @@ class HomeController < ApplicationController
       unownedChampions = Champion.where.not(fbsession: params[:fbSession])
     else
       unownedChampions = Champion.all
+    end
+
+    unownedChampions.each do |p|
+      p.fbsession = nil
+    end
+    ownedChampions.each do |p|
+      p.fbsession = nil
     end
 
     championResponse = {

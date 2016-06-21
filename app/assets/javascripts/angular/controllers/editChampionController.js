@@ -366,6 +366,28 @@ AngularApp.controller("editChampionController", ["$rootScope", "$scope", "httpSe
   };
 
 
+
+  $scope.getChampion = function(desiredChampionID) {
+
+    var successCallback = function(payload, status) {
+      $scope.championForm = payload.data.data;
+    };
+    var errorCallback = function(payload, status) { console.log("error"); };
+
+    var configurationObject = {
+      "method":     "POST",
+      "url":        "/get_champion",
+      "data":       {
+        "id":       desiredChampionID
+      }
+    };
+
+    $http(configurationObject).then(successCallback, errorCallback);
+
+  };
+
+
+
   // Determine if we load from a blank form or a prepopulated form.
   if (
     (window.location.pathname.indexOf("edit_champion") > 0 || window.location.pathname.indexOf("view_champion") > 0) &&
@@ -374,6 +396,10 @@ AngularApp.controller("editChampionController", ["$rootScope", "$scope", "httpSe
   ) {
     var championId = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
     $scope.championForm = JSON.parse(localStorage.getItem("lolchampions")).champions[championId];
+  }
+  else if (window.location.pathname.indexOf("edit_published_champion") > 0) {
+    var championId = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
+    $scope.getChampion(championId);
   }
   else {
     // Build the form and add the repeating elements.
@@ -440,23 +466,6 @@ AngularApp.controller("editChampionController", ["$rootScope", "$scope", "httpSe
       "data":         {
         "champion":   angular.toJson($scope.championForm),
         "fbSession":  fbSessionID
-      }
-    };
-
-    $http(configurationObject).then(successCallback, errorCallback);
-
-  };
-
-  $scope.getChampion = function() {
-
-    var successCallback = function(payload, status) { console.log("success"); };
-    var errorCallback = function(payload, status) { console.log("error"); };
-
-    var configurationObject = {
-      "method":     "POST",
-      "url":        "/get_champion",
-      "data":       {
-        "id":       1
       }
     };
 

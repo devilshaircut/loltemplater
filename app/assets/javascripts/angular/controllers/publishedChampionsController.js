@@ -29,10 +29,12 @@ AngularApp.controller("publishedChampionsController", ["$rootScope", "$scope", "
     var championsArray = [];
     for (var i=0; i < payload.data.data.ownedChampions.length; i++) {
       payload.data.data.ownedChampions[i].championjson.owned = true;
+      payload.data.data.ownedChampions[i].championjson.id = payload.data.data.ownedChampions[i].id;
       championsArray.push(payload.data.data.ownedChampions[i].championjson);
     }
     for (var j=0; j < payload.data.data.unownedChampions.length; j++) {
       payload.data.data.unownedChampions[j].championjson.owned = false;
+      payload.data.data.unownedChampions[j].championjson.id = payload.data.data.unownedChampions[j].id;
       championsArray.push(payload.data.data.unownedChampions[j].championjson);
     }
     // console.log("-----");

@@ -230,7 +230,7 @@ AngularApp.controller("editChampionController", ["$rootScope", "$scope", "httpSe
         "level_1":   null,      "level_2":   null,      "level_3":   null,
         "level_4":   null,      "level_5":   null,      "level_6":   null
       },
-      "thumbnail":   "/assets/custom/placeholder_portrait.png",
+      "thumbnail":   null,
       "description": null,
       "scalings":    []
     };
@@ -243,8 +243,8 @@ AngularApp.controller("editChampionController", ["$rootScope", "$scope", "httpSe
       "introduction": {
         "name":            null,
         "title":           null,
-        "portrait":        "/assets/custom/placeholder_portrait.png",
-        "splash":          "/assets/custom/placeholder_splash.jpg",
+        "portrait":        null,
+        "splash":          null,
         "primary_role":    null,
         "secondary_role":  null,
         "rp_cost":         null,

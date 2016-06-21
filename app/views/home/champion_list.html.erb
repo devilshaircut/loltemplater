@@ -8,7 +8,7 @@
       </div>
       <!-- #edit-champion-header -->
 
-      <div class="ns-table-utilities">
+      <div class="ns-table-utilities" style="margin-top: 30px;">
         <div class="ns-table-utilities-left">
           <input ng-model="championSearch" type="text" placeholder="Search champions by keyword ..." />
           <label>
@@ -164,7 +164,12 @@
                 <a
                   class="ns-button ns-button-line ns-button-line-green ns-button-small"
                   ng-href="/edit_champion/{{$index}}"
-                  >Edit Champion
+                  >Edit
+                </a>
+                <a
+                  class="ns-button ns-button-line ns-button-line-green ns-button-small"
+                  ng-href="/view_champion/{{$index}}"
+                  >View
                 </a>
                 <button
                   class="ns-button ns-button-line ns-button-line-red ns-button-small"

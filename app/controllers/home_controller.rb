@@ -32,6 +32,10 @@ class HomeController < ApplicationController
     @angularController = 'editChampionController'
   end
 
+  def view_champion
+    @angularController = 'editChampionController'
+  end
+
   def create_champion
     @angularController = 'editChampionController'
   end

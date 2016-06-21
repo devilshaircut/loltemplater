@@ -1,7 +1,7 @@
 AngularApp.controller("championListController", ["$rootScope", "$scope", "httpService", function($rootScope, $scope, httpService) {
 
   // BEGIN: Data storage and retrieval. --------------------------------------------------------------
-  console.log(localStorage);
+  // console.log(localStorage);
   var createLocalStorageIfEmpty = function() {
     if (!localStorage.getItem("lolchampions")) {
       var lolchampions = {
@@ -11,7 +11,7 @@ AngularApp.controller("championListController", ["$rootScope", "$scope", "httpSe
     }
   };
   createLocalStorageIfEmpty();
-  console.log(localStorage);
+  // console.log(localStorage);
   // END: Data storage and retrieval. ----------------------------------------------------------------
 
 
@@ -41,7 +41,7 @@ AngularApp.controller("championListController", ["$rootScope", "$scope", "httpSe
     // }
     $scope.champions.splice(itemID, 1);
     localStorage.setItem("lolchampions", angular.toJson({"champions": $scope.champions}));
-    console.log("DELETE");
+    // console.log("DELETE");
   };
 
   // These strings specify where the API endpoints for this view reside.

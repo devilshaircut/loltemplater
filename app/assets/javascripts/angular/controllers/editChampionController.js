@@ -148,7 +148,7 @@ AngularApp.controller("editChampionController", ["$rootScope", "$scope", "httpSe
   };
 
   $scope.addAnotherQuote = function(quoteType) {
-    console.log($scope.championForm);
+    // console.log($scope.championForm);
     $scope.championForm.quotes[quoteType].push({"string": null});
   }
   $scope.clearThisQuote = function(quoteType, index) {
@@ -366,15 +366,13 @@ AngularApp.controller("editChampionController", ["$rootScope", "$scope", "httpSe
 
   // Determine if we load from a blank form or a prepopulated form.
   if (
-    window.location.pathname.indexOf("edit_champion") > 0 &&
+    (window.location.pathname.indexOf("edit_champion") > 0 || window.location.pathname.indexOf("view_champion") > 0) &&
     parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)) > -1 &&
     parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)) <= JSON.parse(localStorage.getItem("lolchampions")).champions.length - 1
   ) {
     var championId = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
     $scope.championForm = JSON.parse(localStorage.getItem("lolchampions")).champions[championId];
   }
-  // else if () {
-  // }
   else {
     // Build the form and add the repeating elements.
     $scope.startOverWithBlankChampionTemplate();

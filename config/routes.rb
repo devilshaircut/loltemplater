@@ -17,6 +17,7 @@ Loltemplater::Application.routes.draw do
 
   post  '/save_champion'         => 'home#save_champion'
   post  '/get_champion'          => 'home#get_champion'
+  post  '/get_all_champions'     => 'home#get_all_champions'
 
   # resources :champion do
   #   post "/save_champion"      => "home#save_champion"

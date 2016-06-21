@@ -44,6 +44,7 @@
 //= require angular/controllers/warningsController
 //= require angular/controllers/editChampionController
 //= require angular/controllers/championListController
+//= require angular/controllers/publishedChampionsController
 //
 //  ANGULAR: Angular App - Directives
 //= require angular/directives/sampleDirective

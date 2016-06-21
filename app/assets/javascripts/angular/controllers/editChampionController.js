@@ -19,7 +19,6 @@ AngularApp.controller("editChampionController", ["$rootScope", "$scope", "httpSe
 
 
 
-
   
 
 
@@ -430,6 +429,9 @@ AngularApp.controller("editChampionController", ["$rootScope", "$scope", "httpSe
     var fbSessionID = null;
     if ($rootScope.fbSession) {
       fbSessionID = $rootScope.fbSession;
+    }
+    else if (localStorage.getItem("fbSession")) {
+      fbSessionID = localStorage.getItem("fbSession")
     }
 
     var configurationObject = {

@@ -25,6 +25,15 @@ AngularApp.controller("championListController", ["$rootScope", "$scope", "httpSe
 
   $scope.nsStateMachine.dataTable.state = {};
 
+  $scope.findChampionByTimestampAndReturnId = function(givenTimestamp) {
+    var storedChampions = JSON.parse(localStorage.getItem("lolchampions")).champions;
+    for (var i = 0; i < storedChampions.length; i++) {
+      if (storedChampions[i].timestamp ==  givenTimestamp) {
+        return i;
+      }
+    }
+  };
+
   // This function deletes an item from a table.
   // It takes a table identifier and item ID.
   // It also calls a warning before it executes.

@@ -528,6 +528,10 @@ nav.ns-section-main {
           font-weight: 400;
           letter-spacing: 1px;
         }
+        > a:hover {
+          text-decoration: none;
+        }
+        > a:hover,
         > a.ns-navigation-current {
           border-bottom: 2px solid #a5a5a5;
           @include screen-format(phone) {

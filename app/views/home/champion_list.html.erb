@@ -17,7 +17,7 @@
         </div>
         <!-- .ns-table-utilities-left -->
         <div class="ns-table-utilities-right">
-          <a href="/edit_champion" class="ns-button ns-button-line">Create a Champion</a><!-- button.ns-button -->
+          <a href="/create_champion" class="ns-button ns-button-line">Create a Champion</a><!-- button.ns-button -->
         </div>
         <!-- .ns-table-utilities-right -->
       </div>
@@ -163,12 +163,12 @@
               <td class="ns-column-align-right">
                 <a
                   class="ns-button ns-button-line ns-button-line-green ns-button-small"
-                  ng-href="/edit_champion/{{$index}}"
+                  ng-href="/edit_champion/{{findChampionByTimestampAndReturnId(champion.timestamp)}}"
                   >Edit
                 </a>
                 <a
                   class="ns-button ns-button-line ns-button-line-green ns-button-small"
-                  ng-href="/view_champion/{{$index}}"
+                  ng-href="/view_champion/{{findChampionByTimestampAndReturnId(champion.timestamp)}}"
                   >View
                 </a>
                 <button

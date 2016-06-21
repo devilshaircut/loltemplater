@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
-  skip_before_action :verify_authenticity_token, only: [:save_champion, :get_champion]
+  skip_before_action :verify_authenticity_token, only: [:save_champion, :get_champion, :get_all_champions]
 
   def index
     @angularController = 'baseController'
@@ -43,7 +43,7 @@ class HomeController < ApplicationController
   end
 
   def published_champions
-    @angularController = 'editChampionController'
+    @angularController = 'publishedChampionsController'
   end
 
   def save_champion
@@ -71,6 +71,32 @@ class HomeController < ApplicationController
       }
       render json: saveResponse
     end
+  end
+
+  def get_all_champions
+
+    ownedChampions = []
+    if params[:fbSession]
+      ownedChampions = Champion.where(fbsession: params[:fbSession])
+      unownedChampions = Champion.where.not(fbsession: params[:fbSession])
+    else
+      unownedChampions = Champion.all
+    end
+
+    championResponse = {
+      data: {
+        ownedChampions: ownedChampions,
+        unownedChampions: unownedChampions
+      },
+      success: true,
+      status: 200
+    }
+    championResponse = championResponse.to_json()
+
+
+
+    # render json: 
+    render json: championResponse
   end
 
   def get_champion

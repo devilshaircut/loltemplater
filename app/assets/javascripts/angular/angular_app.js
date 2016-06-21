@@ -92,9 +92,13 @@ function statusChangeCallback(response) {
   if (response.status === 'connected') {
     testAPI();
   } else if (response.status === 'not_authorized') {
+    // Invalid login, so delete any cached keys.
+    localStorage.removeItem("fbSession");
     document.getElementById('status').innerHTML = 'Please log ' +
       'into this app.';
   } else {
+    // Invalid login, so delete any cached keys.
+    localStorage.removeItem("fbSession");
     document.getElementById('status').innerHTML = 'Please log ' +
       'into Facebook.';
   }
@@ -138,6 +142,8 @@ function testAPI() {
     $rootScope.$apply(function () {
       $rootScope.fbSession = response;
     });
+    // Redundantly save the ID key in localstorage.
+    localStorage.setItem("fbSession", response.id);
 
     console.log('Successful login for: ' + response.name);
     document.getElementById('status').innerHTML =

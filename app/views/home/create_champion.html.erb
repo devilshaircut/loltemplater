@@ -26,7 +26,7 @@
               <div class="ns-form-row-right">
                 <div id="edit-champion-intro-portrait-display">
                   <img id="champion-portrait" ng-if="championForm.introduction.portrait" ng-src="{{championForm.introduction.portrait}}" alt="Portrait placeholder image." />
-                  <img ng-if="!championForm.introduction.portrait" src="<%= asset_path("custom/placeholder_portrait.png") %>" alt="Portrait placeholder image." />
+                  <img ng-if="!championForm.introduction.portrait" src="<%= asset_path("core/placeholder_portrait.png") %>" alt="Portrait placeholder image." />
                 </div>
                 <!-- #edit-champion-intro-portrait-display -->
                 <input
@@ -1488,7 +1488,7 @@
             <!-- .ns-form-row-left -->
             <div class="ns-form-row-right">
               <img class="skill-icon-image" ng-if="skill.thumbnail" ng-src="{{skill.thumbnail}}"  alt="Skill placeholder image." />
-              <img class="skill-icon-image" ng-if="!skill.thumbnail" src="<%= asset_path("custom/placeholder_portrait.png") %>" alt="Skill placeholder image." />
+              <img class="skill-icon-image" ng-if="!skill.thumbnail" src="<%= asset_path("core/placeholder_portrait.png") %>" alt="Skill placeholder image." />
               <input
                 type="file"
                 ng-attr-id="{{'edit-champion-skill-thumbnail-' + $index}}"
@@ -1971,4 +1971,5 @@
     <!-- .ns-section-wrapper -->
   </section>
   <!-- section.ns-section-main -->
+
 

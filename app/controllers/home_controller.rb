@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
 
+  skip_before_action :verify_authenticity_token, only: [:save_champion]
+
   def index
     @angularController = 'baseController'
   end
@@ -38,6 +40,11 @@ class HomeController < ApplicationController
 
   def create_champion
     @angularController = 'editChampionController'
+  end
+
+  def save_champion
+    @angularController = 'editChampionController'
+    render json: "{ \"data\": { \"id\": \"test\" }, \"success\": true, \"status\": 200 }"
   end
 
   def champion_list

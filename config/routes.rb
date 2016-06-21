@@ -2,17 +2,23 @@ Loltemplater::Application.routes.draw do
 
   root :to => "home#index"
 
-  get '/sample'              => 'home#sample'
-  get '/tables'              => 'home#tables'
-  get '/warnings'            => 'home#warnings'
-  get '/buttons'             => 'home#buttons'
-  get '/forms'               => 'home#forms'
-  get '/icons'               => 'home#icons'
-  get '/edit_champion/:id'   => 'home#edit_champion'
-  get '/view_champion/:id'   => 'home#view_champion'
-  get '/create_champion'     => 'home#create_champion'
-  get '/champion_list'       => 'home#champion_list'
-  get '/roadmap'             => 'home#roadmap'
+  get   '/sample'                => 'home#sample'
+  get   '/tables'                => 'home#tables'
+  get   '/warnings'              => 'home#warnings'
+  get   '/buttons'               => 'home#buttons'
+  get   '/forms'                 => 'home#forms'
+  get   '/icons'                 => 'home#icons'
+  get   '/edit_champion/:id'     => 'home#edit_champion'
+  get   '/view_champion/:id'     => 'home#view_champion'
+  get   '/create_champion'       => 'home#create_champion'
+  get   '/champion_list'         => 'home#champion_list'
+  get   '/roadmap'               => 'home#roadmap'
+
+  post  '/save_champion'         => 'home#save_champion'
+
+  # resources :champion do
+  #   post "/save_champion"      => "home#save_champion"
+  # end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

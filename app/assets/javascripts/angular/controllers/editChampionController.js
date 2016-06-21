@@ -420,7 +420,17 @@ AngularApp.controller("editChampionController", ["$rootScope", "$scope", "httpSe
 
   };
 
+  $scope.publishChampion = function() {
 
+    var successCallback = function(payload, status) { console.log("success"); };
+    var errorCallback = function(payload, status) { console.log("error"); };
+    var configurationObject = {
+      "method": "POST",
+      "url": "/save_champion"
+    };
+    $http(configurationObject).then(successCallback, errorCallback);
+
+  };
 
   // These strings specify where the API endpoints for this view reside.
   var apiEndpoint = '/sampleResponse.json';
